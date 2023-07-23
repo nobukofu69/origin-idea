@@ -12,7 +12,7 @@
 
 <details>
 <summary>ワイヤーフレーム</summary>
-<img src="">
+<img src="https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-id=0-1&mode=design&t=L05naf7mpYNbSHjR-0">
 </details>
 
 <details>
