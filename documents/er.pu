@@ -1,0 +1,52 @@
+@startuml
+
+entity "users" as users {
+  + id [PK]
+  --
+  username
+  password
+  email
+  profession
+  age
+  rating
+  is_consultant
+}
+
+entity "requests" as requests {
+  + id [PK]
+  --
+  requester_id [FK]
+  consultant_id [FK]
+  --
+  request_content
+  request_date
+  status
+  is_read
+}
+
+entity "talk_rooms" as talk_rooms {
+  + id [PK]
+  --
+  request_id [FK]
+  --
+  status
+}
+
+entity "messages" as messages {
+  + id [PK]
+  --
+  talk_room_id [FK]
+  sender_id [FK]
+  receiver_id [FK]
+  --
+  message_content
+  message_date
+  is_read
+}
+
+users ||--o{ requests
+requests ||--o{ talk_rooms
+users ||--o{ messages
+talk_rooms ||--o{ messages
+
+@enduml
