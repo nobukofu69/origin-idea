@@ -49,4 +49,4 @@ requests ||--o| talk_rooms
 users ||--o{ messages
 talk_rooms ||--o{ messages
 
-@enduml
+@enduml 
