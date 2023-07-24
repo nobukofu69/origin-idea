@@ -70,7 +70,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 
 <details>
 <summary>ER図</summary>
-<img src="https://github.com/nobukofu69/origin-idea/blob/main/documents/er.png">
+<img src="">
 </details>
 
 
