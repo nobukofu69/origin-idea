@@ -16,7 +16,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 </details>
 
 <details>
-<summary>テーブル定義書（もしくは ER 図）</summary>
+<summary>テーブル定義書</summary>
 
 ### users
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
@@ -66,8 +66,13 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
   - `sender_id` は `users.id` に紐づく
   - `receiver_id` は `users.id` に紐づく
 
-
 </details>
+
+<details>
+<summary>ER図</summary>
+<img src="https://github.com/nobukofu69/origin-idea/blob/main/documents/er.png">
+</details>
+
 
 <details>
 <summary>システム構成図</summary>
