@@ -76,4 +76,5 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 
 <details>
 <summary>システム構成図</summary>
+<img src="https://github.com/nobukofu69/origin-idea/blob/main/documents/%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E6%A7%8B%E6%88%90%E5%9B%B3.drawio.png">
 </details>
