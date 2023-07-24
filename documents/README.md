@@ -17,6 +17,56 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 
 <details>
 <summary>テーブル定義書（もしくは ER 図）</summary>
+
+### users
+| カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
+|------|--------|------|----|------|----------------|------|
+| id | INTEGER | No | PK | | Yes | ユーザーID |
+| username | VARCHAR(255) | No | | | | ユーザーネーム |
+| password | STRING | No | | | | パスワード |
+| email | VARCHAR(255) | No | | | | メールアドレス |
+| profession | VARCHAR(255) | Yes | | | | 職業 |
+| age | INTEGER | Yes | | | | 年齢 |
+| rating | INTEGER | Yes | | | | 評価 |
+| is_consultant | BOOLEAN | No | | False | | コンサルタント登録フラグ |
+
+### requests
+| カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
+|------|--------|------|----|------|----------------|------|
+| id | INTEGER | No | PK | | Yes | 依頼ID |
+| requester_id | INTEGER | No | FK | | | 依頼者ID |
+| consultant_id | INTEGER | Yes | FK | | | コンサルタントID |
+| request_content | TEXT | No | | | | 依頼内容 |
+| request_date | DATETIME | No | | | | 依頼日時 |
+| status | VARCHAR(10) | No | | | | ステータス |
+| is_read | BOOLEAN | No | | False | | 既読フラグ |
+- 外部キー制約
+  - `requester_id` は `users.id` に紐づく
+  - `consultant_id` は `users.id` に紐づく
+
+### talk_rooms
+| カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
+|------|--------|------|----|------|----------------|------|
+| id | INTEGER | No | PK | | Yes | トークルームID |
+| request_id | INTEGER | No | FK | | | 依頼ID |
+| status | VARCHAR(10) | No | | | | ステータス |
+
+### messages
+| カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
+|------|--------|------|----|------|----------------|------|
+| id | INTEGER | No | PK | | Yes | メッセージID |
+| talk_room_id | INTEGER | No | FK | | | トークルームID |
+| sender_id | INTEGER | No | FK | | | 送信者ID |
+| receiver_id | INTEGER | No | FK | | | 受信者ID |
+| message_content | TEXT | No | | | | メッセージ内容 |
+| message_date | DATETIME | No | | | | メッセージ送信日時 |
+| is_read | BOOLEAN | No | | False | | 既読フラグ |
+- 外部キー制約
+  - `talk_room_id` は `talk_rooms.id` に紐づく
+  - `sender_id` は `users.id` に紐づく
+  - `receiver_id` は `users.id` に紐づく
+
+
 </details>
 
 <details>
