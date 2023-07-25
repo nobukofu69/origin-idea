@@ -22,20 +22,13 @@ entity "requests" as requests {
   request_date
   status
   is_read
-}
-
-entity "talk_rooms" as talk_rooms {
-  + id [PK]
-  --
-  request_id [FK]
-  --
-  status
+  talk_room_status
 }
 
 entity "messages" as messages {
   + id [PK]
   --
-  talk_room_id [FK]
+  request_id [FK]
   sender_id [FK]
   receiver_id [FK]
   --
@@ -45,8 +38,8 @@ entity "messages" as messages {
 }
 
 users ||--o{ requests
-requests ||--o| talk_rooms
+requests ||--o{ messages
 users ||--o{ messages
-talk_rooms ||--o{ messages
+
 
 @enduml 
