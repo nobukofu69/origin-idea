@@ -25,7 +25,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | username | VARCHAR(255) | No | | | | ユーザーネーム |
 | profile | TEXT | Yes | | | | プロフィール |
 | profile_image_id | VARCHAR(255) | Yes | | | | プロフィール画像 |
-| email | VARCHAR(255) | No | | | | メールアドレス |
+| email | VARCHAR(255) | No | UK | | | メールアドレス |
 | password | VARCHAR(255) | No | | | | パスワード |
 | profession | VARCHAR(255) | Yes | | | | 職業 |
 | age | INTEGER | Yes | | | | 年齢 |
