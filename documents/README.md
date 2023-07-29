@@ -24,9 +24,9 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | id | INTEGER | No | PK | | Yes | ユーザーID |
 | username | VARCHAR(255) | No | | | | ユーザーネーム |
 | profile | TEXT | Yes | | | | プロフィール |
-| profile_image_id | STRING | Yes | | | | プロフィール画像 |
+| profile_image_id | VARCHAR(255) | Yes | | | | プロフィール画像 |
 | email | VARCHAR(255) | No | | | | メールアドレス |
-| password | STRING | No | | | | パスワード |
+| password | VARCHAR(255) | No | | | | パスワード |
 | profession | VARCHAR(255) | Yes | | | | 職業 |
 | age | INTEGER | Yes | | | | 年齢 |
 | rating | INTEGER | Yes | | | | 評価 |
@@ -40,9 +40,9 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | consultant_id | INTEGER | Yes | FK | | | コンサルタントID |
 | request_content | TEXT | No | | | | 依頼内容 |
 | request_date | DATETIME | No | | | | 依頼日時 |
-| status | VARCHAR(10) | No | | | | 依頼内容のステータス |
+| status | VARCHAR(255) | No | | | | 依頼内容のステータス |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
-| talk_room_status | VARCHAR(10) | No | | | | トークルームのステータス |
+| talk_room_status | VARCHAR(255) | No | | | | トークルームのステータス |
 - 外部キー制約
   - `requester_id` は `users.id` に紐づく
   - `consultant_id` は `users.id` に紐づく
