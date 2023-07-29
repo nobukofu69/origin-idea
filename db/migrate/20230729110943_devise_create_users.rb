@@ -36,7 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :username
       t.text :profile
       t.string :profile_image_id
-      t.string :email
       t.string :profession
       t.string :age
       t.string :rating
