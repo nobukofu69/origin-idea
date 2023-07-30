@@ -11,8 +11,17 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p> 
+    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <header>
+      <%= link_to root_path do %>
+        <h1>Origin Idea</h1>
+      <% end %>
+
+      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+    </header>
+
+
     <%= yield %>
   </body>
 </html>
