@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_110943) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "username"
-    t.text "profil"
+    t.text "profile"
     t.string "profile_image_id"
     t.string "profession"
     t.string "age"
