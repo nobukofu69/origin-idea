@@ -29,6 +29,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | password | VARCHAR(255) | No | | | | パスワード |
 | profession | VARCHAR(255) | Yes | | | | 職業 |
 | age | INTEGER | Yes | | | | 年齢 |
+| skill | TEXT | Yes | | | | スキル/知識/資格 |
 | rating | INTEGER | Yes | | | | 評価 |
 | is_consultant | BOOLEAN | No | | False | | コンサルタント登録フラグ |
 
