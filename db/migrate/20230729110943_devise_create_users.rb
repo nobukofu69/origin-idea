@@ -41,7 +41,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string  :profile_image_id
       t.text    :skill
       t.string  :rating
-      t.string  :is_consultant
+      t.boolean  :is_consultant, default: false
       t.timestamps null: false
     end
 
