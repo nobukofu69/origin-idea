@@ -34,7 +34,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | rating | INTEGER | Yes | | | | 評価 |
 | is_consultant | BOOLEAN | No | | False | | コンサルタント登録フラグ |
 
-### requests
+### consultations
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
 |------|--------|------|----|------|----------------|------|
 | id | INTEGER | No | PK | | Yes | 依頼ID |
