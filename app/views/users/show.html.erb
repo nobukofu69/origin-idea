@@ -1,0 +1,13 @@
+<h2><%= @user.username %></h2>
+
+<% if @user.is_consultant %>
+  <%= turbo_frame_tag 'toggle_consultant_status' do %>
+    <%= link_to "コンサルの受付を停止する", toggle_consultant_status_user_path(@user),
+      data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
+  <% end %>
+<% else %>
+  <%= turbo_frame_tag 'toggle_consultant_status' do %>
+    <%= link_to "コンサルの受付を開始する", toggle_consultant_status_user_path(@user),
+      data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
+  <% end %>
+<% end %>
