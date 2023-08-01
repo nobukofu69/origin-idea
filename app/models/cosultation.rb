@@ -1,0 +1,2 @@
+class Cosultation < ApplicationRecord
+end
