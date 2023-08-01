@@ -37,9 +37,9 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 ### consultations
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
 |------|--------|------|----|------|----------------|------|
-| id | INTEGER | No | PK | | Yes | 依頼ID |
-| requester_id | INTEGER | No | FK | | | 依頼者ID |
+| id | INTEGER | No | PK | | Yes | コンサルテーションID |
 | consultant_id | INTEGER | Yes | FK | | | コンサルタントID |
+| requester_id | INTEGER | No | FK | | | 依頼者ID |
 | request_content | TEXT | No | | | | 依頼内容 |
 | request_date | DATETIME | No | | | | 依頼日時 |
 | status | VARCHAR(255) | No | | | | 依頼内容のステータス |
