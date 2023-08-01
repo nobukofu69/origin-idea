@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  get 'consultations/new'
+  get 'consultations/create'
   devise_for :users
   root to: "home#index"
   resources :users, only: [:show, :edit, :update] do
     member do
       patch :toggle_consultant_status
     end
+
+    resources :consultations, only: [:new, :create]
   end
 end
