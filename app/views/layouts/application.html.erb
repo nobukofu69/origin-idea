@@ -19,8 +19,7 @@
       <% end %>
 
 <%# キーワード検索 %>
-<%# トーク一覧 %>
-<%# コンサルティング %>
+<%# <%= link_to "依頼受付一覧", consultations_path %> %>
 
       <% if user_signed_in? %>
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>

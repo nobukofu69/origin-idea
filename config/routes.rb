@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'consultations/new'
-  get 'consultations/create'
   devise_for :users
   root to: "home#index"
   resources :users, only: [:show, :edit, :update] do

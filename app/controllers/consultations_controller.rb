@@ -9,7 +9,7 @@ class ConsultationsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    @consultation = Consultation.new(consultation_params.merge(consultant: @user))
+    @consultation = Consultation.new(consultation_params.merge(consultant: @user, status: :requesting))
 
     if @consultation.save
       # 保存成功時の処理

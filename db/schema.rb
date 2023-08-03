@@ -16,9 +16,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_144853) do
     t.bigint "requester_id", null: false
     t.text "request_content"
     t.datetime "answer_deadline"
-    t.string "status"
+    t.integer "status", default: 0
     t.boolean "is_read", default: false
-    t.string "talk_room_status"
+    t.boolean "talk_room_open", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["consultant_id"], name: "index_consultations_on_consultant_id"
