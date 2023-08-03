@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_110943) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_01_144853) do
+  create_table "consultations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "consultant_id", null: false
+    t.bigint "requester_id", null: false
+    t.text "request_content"
+    t.datetime "answer_deadline"
+    t.string "status"
+    t.boolean "is_read", default: false
+    t.string "talk_room_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["consultant_id"], name: "index_consultations_on_consultant_id"
+    t.index ["requester_id"], name: "index_consultations_on_requester_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -32,4 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_110943) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "consultations", "users", column: "consultant_id"
+  add_foreign_key "consultations", "users", column: "requester_id"
 end
