@@ -22,7 +22,7 @@ class ConsultationsController < ApplicationController
 
   # ユーザーが受けたコンサル依頼一覧を表示する
   def received_consultations
-    @consultations = Consultation.where(consultant: current_user)
+    @consultations = Consultation.includes(:requester).where(consultant: current_user)
   end
 
   private
