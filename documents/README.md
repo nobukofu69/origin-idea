@@ -41,11 +41,10 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | consultant_id | INTEGER | Yes | FK | | | コンサルタントID |
 | requester_id | INTEGER | No | FK | | | 依頼者ID |
 | request_content | TEXT | No | | | | 依頼内容 |
-| request_date | DATETIME | No | | | | 依頼日時 |
 | answer_deadline | DATETIME | No | | | | 回答期限 |
-| status | VARCHAR(255) | No | | | | 依頼内容のステータス |
+| status | INTEGER | No | | 0 | | 依頼内容のステータス |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
-| talk_room_status | VARCHAR(255) | No | | | | トークルームのステータス |
+| talk_room_open | BOOLEAN | No | False | | | トークルームのステータス |
 - 外部キー制約
   - `consultant_id` は `users.id` に紐づく
   - `requester_id` は `users.id` に紐づく

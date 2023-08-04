@@ -1,2 +1,16 @@
-<h1>Consultations#new</h1>
-<p>Find me in app/views/consultations/new.html.erb</p>
+<h2>コンサル依頼ページ</h2>
+<%=  link_to @user.username, user_path(@user) %>さんに希望する内容を入力しましょう｡
+<%= form_with model: [@user, @consultation], local: true do |form| %>
+  <p>
+    <%= form.label :request_content, "相談内容"%><br>
+    <%= form.text_area :request_content %>
+  </p>
+  <p>
+    <%= form.label :answer_deadline, "提案期限" %>
+    <%= form.select :answer_deadline, @answer_deadlines %>
+  </p>
+  <p>
+    <%= form.submit "依頼する" %>
+  </p>
+<% end %>
+
