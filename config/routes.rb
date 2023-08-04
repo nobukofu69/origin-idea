@@ -5,11 +5,13 @@ Rails.application.routes.draw do
     member do
       # ユーザーのコンサルタントステータスを変更する
       patch :toggle_consultant_status
-
-      # ユーザーが受けたコンサル依頼一覧を表示する
-      get :received_consultations
     end
 
-    resources :consultations, only: [:new, :create]
+    resources :consultations, only: [:new, :create] do
+      collection do
+        # ユーザーが受けたコンサル依頼一覧を表示する
+        get :received_consultations
+      end
+    end
   end
 end
