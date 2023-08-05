@@ -12,6 +12,12 @@ Rails.application.routes.draw do
         # ユーザーが受けたコンサル依頼一覧を表示する
         get :received_consultations
       end
+      member do
+        # コンサル依頼を受ける
+        patch :accept
+        # コンサル依頼を拒否する
+        patch :reject
+      end
     end
   end
 end

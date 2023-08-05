@@ -23,8 +23,20 @@ class ConsultationsController < ApplicationController
   def show
     @consultation = Consultation.find(params[:id])
     @requester = User.find(@consultation.requester_id)
-
   end
+
+  def accept
+    @consultation = Consultation.find(params[:id])
+    @consultation.update(status: "matching")
+    redirect_to root_path, notice: 'コンサル依頼を受けました'
+  end
+
+  def reject
+    @consultation = Consultation.find(params[:id])
+    @consultation.update(status: "closed")
+    redirect_to root_path, notice: 'コンサル依頼を断りました'
+  end
+
 
   # ユーザーが受けたコンサル依頼一覧を表示する
   def received_consultations
