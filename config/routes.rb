@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       patch :toggle_consultant_status
     end
 
-    resources :consultations, only: [:new, :create] do
+    resources :consultations, only: [:new, :create, :show] do
       collection do
         # ユーザーが受けたコンサル依頼一覧を表示する
         get :received_consultations
