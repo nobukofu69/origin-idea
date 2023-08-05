@@ -20,4 +20,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :talkrooms, only: [:index] do
+    get ':consultation_id', to: 'talkrooms#show', as: 'talkroom', on: :collection
+  end
 end
