@@ -20,7 +20,8 @@
 
 <%# キーワード検索 %>
       <% if user_signed_in? %>
-        <%= link_to "依頼受付一覧", received_consultations_user_consultations_path(current_user) %>
+        <%= link_to "トーク", talkrooms_path
+        <%= link_to "依頼受付", received_consultations_user_consultations_path(current_user) %>
         <%= current_user.username %>さん
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% else %>
