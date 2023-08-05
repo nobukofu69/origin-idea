@@ -3,16 +3,16 @@
   <% if consultation.consultant_id == current_user.id %>
     <div class="card">
       <div class="card-body">
-        <%# <%= link_to consultation_path(consultation) do %> %>
+        <%= link_to user_consultation_path(consultation.consultant, consultation.id) do %>
+
           <%# ユーザーアイコン実装予定 %>
-          
+
           <%# ユーザー名 %>
           <h5 class="card-title"><%= consultation.requester.username %></h5>
 
           <%# 職業 %>
           <p class="card-text"><%= consultation.requester.profession %></p>
-
-        <%# <% end %> %>
+        <% end %>
       </div>
     </div>
   <% end %>
