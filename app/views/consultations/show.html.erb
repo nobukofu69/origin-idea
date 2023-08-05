@@ -1,0 +1,11 @@
+<%# is read をtrueにする %>
+<h2>依頼詳細</h2>
+<%# アイコン %>
+<%= link_to @requester.username, user_path(@requester) %>さんからの依頼
+<h3>相談内容</h3>
+<p><%= @consultation.request_content %></p>
+<h3>提案期限</h3>
+<p><%= @consultation.answer_deadline.strftime('%Y年%m月%d日中') %></p>
+
+<%= link_to "依頼を受ける", accept_user_consultation_path(@consultation.consultant, @consultation), data: { turbo_method: :patch } %>
+<%= link_to "依頼を断る", reject_user_consultation_path(@consultation.consultant, @consultation), data: { turbo_method: :patch } %>
