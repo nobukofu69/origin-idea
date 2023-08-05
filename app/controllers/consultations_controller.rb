@@ -3,7 +3,7 @@ class ConsultationsController < ApplicationController
     @user = User.find(params[:user_id])
     @consultation = Consultation.new
     @answer_deadlines = (1..30).map do |day|
-      [ "#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日')})", (Time.current + day.days) ]
+      [ "#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日中')})", (Time.current + day.days) ]
     end
   end
 
@@ -18,6 +18,12 @@ class ConsultationsController < ApplicationController
       # 保存失敗時の処理
       render :new
     end
+  end
+
+  def show
+    @consultation = Consultation.find(params[:id])
+    @requester = User.find(@consultation.requester_id)
+
   end
 
   # ユーザーが受けたコンサル依頼一覧を表示する
