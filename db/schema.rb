@@ -25,14 +25,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_093125) do
   end
 
   create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "sender_id_id", null: false
-    t.bigint "consultation_id_id", null: false
+    t.bigint "sender_id", null: false
+    t.bigint "consultation_id", null: false
     t.text "content", null: false
     t.boolean "is_read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["consultation_id_id"], name: "index_messages_on_consultation_id_id"
-    t.index ["sender_id_id"], name: "index_messages_on_sender_id_id"
+    t.index ["consultation_id"], name: "index_messages_on_consultation_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -58,6 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_093125) do
 
   add_foreign_key "consultations", "users", column: "consultant_id"
   add_foreign_key "consultations", "users", column: "requester_id"
-  add_foreign_key "messages", "consultations", column: "consultation_id_id"
-  add_foreign_key "messages", "users", column: "sender_id_id"
+  add_foreign_key "messages", "consultations"
+  add_foreign_key "messages", "users", column: "sender_id"
 end
