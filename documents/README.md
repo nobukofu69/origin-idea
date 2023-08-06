@@ -25,7 +25,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | username | VARCHAR(255) | No | | | | ユーザーネーム |
 | email | VARCHAR(255) | No | UK | | | メールアドレス |
 | password | VARCHAR(255) | No | | | | パスワード |
-| age | INTEGER | Yes | | | | 年齢 |
+| birthdate | DATE | Yes | | | | 生年月日 |
 | gender | VARCHAR(255) | No | | | | 性別 |
 | profession | VARCHAR(255) | Yes | | | | 職業 |
 | profile | TEXT | Yes | | | | プロフィール |
@@ -38,7 +38,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
 |------|--------|------|----|------|----------------|------|
 | id | INTEGER | No | PK | | Yes | コンサルテーションID |
-| consultant_id | INTEGER | Yes | FK | | | コンサルタントID |
+| consultant_id | INTEGER | No | FK | | | コンサルタントID |
 | requester_id | INTEGER | No | FK | | | 依頼者ID |
 | request_content | TEXT | No | | | | 依頼内容 |
 | answer_deadline | DATETIME | No | | | | 回答期限 |
