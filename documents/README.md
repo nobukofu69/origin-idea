@@ -59,7 +59,6 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 - 外部キー制約
   - `sender_id` は `users.id` に紐づく
   - `consultation_id` は `consultations.id` に紐づく
-
 </details>
 
 <details>
