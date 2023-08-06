@@ -1,0 +1,8 @@
+<h2>トーク一覧</h2>
+<% @consultations.each do |consultation| %>
+  <%= link_to talkroom_talkrooms_path(consultation) do %>
+    <%# トーク相手のユーザー名を表示 %>
+    <% other_user = consultation.other_user(current_user) %>
+    <p><%= other_user.username %></p>
+  <% end %>
+<% end %>

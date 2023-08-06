@@ -14,5 +14,7 @@
     <% end %>
   <% end %>
 <% else %>
-  <%= link_to "コンサルを依頼する", new_user_consultation_path(@user) %>
+  <% if !@already_requested %>
+    <%= link_to "コンサルを依頼する", new_user_consultation_path(@user) %>
+  <% end %>
 <% end %>

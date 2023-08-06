@@ -1,5 +1,6 @@
 <h2>コンサルタント一覧</h2>
 <% @users.each do |user| %>
+  <%# コンサルタントのみ表示 %>
   <% if user.is_consultant %>
     <div class="card">
       <div class="card-body">

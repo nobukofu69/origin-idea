@@ -44,7 +44,6 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | answer_deadline | DATETIME | No | | | | 回答期限 |
 | status | INTEGER | No | | 0 | | 依頼内容のステータス |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
-| talk_room_open | BOOLEAN | No | False | | | トークルームのステータス |
 - 外部キー制約
   - `consultant_id` は `users.id` に紐づく
   - `requester_id` は `users.id` に紐づく
@@ -53,16 +52,15 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
 |------|--------|------|----|------|----------------|------|
 | id | INTEGER | No | PK | | Yes | メッセージID |
-| request_id | INTEGER | No | FK | | | 依頼ID |
 | sender_id | INTEGER | No | FK | | | 送信者ID |
 | receiver_id | INTEGER | No | FK | | | 受信者ID |
+| consultation_id | INTEGER | No | FK | | | 依頼ID |
 | message_content | TEXT | No | | | | メッセージ内容 |
-| message_date | DATETIME | No | | | | メッセージ送信日時 |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
 - 外部キー制約
-  - `request_id` は `requests.id` に紐づく
   - `sender_id` は `users.id` に紐づく
   - `receiver_id` は `users.id` に紐づく
+  - `consultation_id` は `consultations.id` に紐づく
 
 </details>
 

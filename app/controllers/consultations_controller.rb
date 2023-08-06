@@ -3,7 +3,7 @@ class ConsultationsController < ApplicationController
     @user = User.find(params[:user_id])
     @consultation = Consultation.new
     @answer_deadlines = (1..30).map do |day|
-      [ "#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日')})", (Time.current + day.days) ]
+      [ "#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日中')})", (Time.current + day.days) ]
     end
   end
 
@@ -20,9 +20,27 @@ class ConsultationsController < ApplicationController
     end
   end
 
+  def show
+    @consultation = Consultation.find(params[:id])
+    @requester = User.find(@consultation.requester_id)
+  end
+
+  def accept
+    @consultation = Consultation.find(params[:id])
+    @consultation.update(status: "matching")
+    redirect_to root_path, notice: 'コンサル依頼を受けました'
+  end
+
+  def reject
+    @consultation = Consultation.find(params[:id])
+    @consultation.update(status: "closed")
+    redirect_to root_path, notice: 'コンサル依頼を断りました'
+  end
+
+
   # ユーザーが受けたコンサル依頼一覧を表示する
   def received_consultations
-    @consultations = Consultation.where(consultant: current_user)
+    @consultations = Consultation.includes(:requester).where(consultant: current_user)
   end
 
   private
