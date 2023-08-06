@@ -54,7 +54,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | id | INTEGER | No | PK | | Yes | メッセージID |
 | sender_id | INTEGER | No | FK | | | 送信者ID |
 | receiver_id | INTEGER | No | FK | | | 受信者ID |
-| consultation_id | INTEGER | No | FK | | | 依頼ID |
+| consultation_id | INTEGER | No | FK | | | コンサルテーションID |
 | message_content | TEXT | No | | | | メッセージ内容 |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
 - 外部キー制約
