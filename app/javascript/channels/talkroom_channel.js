@@ -8,16 +8,19 @@ const appChat = consumer.subscriptions.create("TalkroomChannel", {
   },
 
   received(data) {
+    console.log('データ届いてるよ！')
+    const messages = document.getElementById('messages');
+    messages.insertAdjacentHTML('afterbegin', data['message']);
   },
 
-  speak: function(message) {
-    return this.perform('speak', {message: message});
+  speak(data) {
+    return this.perform('speak', data);
   }
 });
 
 window.document.onkeydown = function(event) {
   if(event.key == 'Enter') {
-    appRoom.speak(event.target.value);
+    appChat.speak({content: event.target.value});
     event.target.value = '';
     event.preventDefault();
   }

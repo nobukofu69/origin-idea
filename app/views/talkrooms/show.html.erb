@@ -1,2 +1,9 @@
-<h1>Talkrooms#show</h1>
-<p>Find me in app/views/talkrooms/show.html.erb</p>
+<h2><%= @consultation.other_user(current_user).username %>さん</h2>
+<!-- チャットメッセージの入力フォーム -->
+<form>
+  <label for="content">メッセージ：</label>
+  <input type="text" id="content" size="50" /><br/>
+</form>
+<!-- チャットメッセージの表示場所 -->
+<div id ='messages'>
+</div>
