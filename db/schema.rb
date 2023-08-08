@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_093125) do
     t.bigint "sender_id", null: false
     t.bigint "consultation_id", null: false
     t.text "content", null: false
+    t.datetime "sent_at", null: false
     t.boolean "is_read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
