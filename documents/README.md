@@ -55,6 +55,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | sender_id | INTEGER | No | FK | | | 送信者ID |
 | consultation_id | INTEGER | No | FK | | | コンサルテーションID |
 | content | TEXT | No | | | | メッセージ内容 |
+| sent_at | DATETIME | No | | | | 送信日時 |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
 - 外部キー制約
   - `sender_id` は `users.id` に紐づく
