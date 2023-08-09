@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   end
 
   resources :talkrooms, only: [:index] do
-    get ':consultation_id', to: 'talkrooms#show', as: 'talkroom', on: :collection
+    collection do
+      get ':consultation_id', to: 'talkrooms#show', as: 'talkroom'
+      patch ':consultation_id', to: 'talkrooms#end_consultation'
+    end
   end
 end

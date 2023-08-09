@@ -9,4 +9,10 @@ class TalkroomsController < ApplicationController
     @consultation = Consultation.find(params[:consultation_id])
     @messages = @consultation.messages.includes(:sender)
   end
+
+  def end_consultation
+    consultation = Consultation.find(params[:consultation_id])
+    consultation.update(status: :closed)
+    redirect_to root_path, notice: 'アイデア相談を終了しました'
+  end
 end
