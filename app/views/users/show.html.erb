@@ -4,17 +4,17 @@
 <% if current_user == @user %>
   <% if @user.is_consultant %>
     <%= turbo_frame_tag 'toggle_consultant_status' do %>
-      <%= link_to "コンサルの受付を停止する", toggle_consultant_status_user_path(@user),
+      <%= link_to "受付を停止する", toggle_consultant_status_user_path(@user),
         data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
     <% end %>
   <% else %>
     <%= turbo_frame_tag 'toggle_consultant_status' do %>
-      <%= link_to "コンサルの受付を開始する", toggle_consultant_status_user_path(@user),
+      <%= link_to "受付を開始する", toggle_consultant_status_user_path(@user),
         data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
     <% end %>
   <% end %>
 <% else %>
   <% if !@already_requested %>
-    <%= link_to "コンサルを依頼する", new_user_consultation_path(@user) %>
+    <%= link_to "アイデアの相談をする", new_user_consultation_path(@user) %>
   <% end %>
 <% end %>
