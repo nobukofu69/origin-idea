@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def update
+  end
+
   def toggle_consultant_status
     @user = User.find(params[:id])
     @user.update(is_consultant: !@user.is_consultant)
