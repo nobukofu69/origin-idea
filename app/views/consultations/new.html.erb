@@ -1,8 +1,9 @@
 <h2>コンサル依頼ページ</h2>
 <%=  link_to @user.username, user_path(@user) %>さんに希望する内容を入力しましょう｡
-<%= form_with model: [@user, @consultation], local: true do |form| %>
+<%= form_with model: [@user, @consultation], local: true,
+    html: { data: { turbo_confirm: "依頼を送信してよろしいですか？" } } do |form| %>
   <p>
-    <%= form.label :request_content, "相談内容"%><br>
+    <%= form.label :request_content, "相談内容" %><br>
     <%= form.text_area :request_content %>
   </p>
   <p>
@@ -13,4 +14,5 @@
     <%= form.submit "依頼する" %>
   </p>
 <% end %>
+
 

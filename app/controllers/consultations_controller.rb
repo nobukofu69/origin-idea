@@ -38,7 +38,7 @@ class ConsultationsController < ApplicationController
   # アイデア相談の依頼を断る
   def reject
     @consultation = Consultation.find(params[:id])
-    @consultation.update(request_status: "completed")
+    @consultation.update(request_status: "completed", talkroom_status: "closed")
     redirect_to root_path, notice: '依頼を断りました'
   end
 
