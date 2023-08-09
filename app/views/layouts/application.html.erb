@@ -23,6 +23,7 @@
         <%= link_to "トーク", talkrooms_path %>
         <%= link_to "依頼受付", received_consultations_user_consultations_path(current_user) %>
         <%= current_user.username %>さん
+        <%= link_to "プロフィール", user_path(current_user) %>
         <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
       <% else %>
         <%= link_to "ログイン", new_user_session_path %>
