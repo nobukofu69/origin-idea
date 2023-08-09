@@ -31,8 +31,7 @@ class ConsultationsController < ApplicationController
   # アイデア相談の依頼を受ける
   def accept
     @consultation = Consultation.find(params[:id])
-    @consultation.update(request_status: "completed")
-    @consultation.talkroom_status = "opened"
+    @consultation.update(request_status: "completed", talkroom_status: "opened")
     redirect_to root_path, notice: '依頼を受けました'
   end
 
