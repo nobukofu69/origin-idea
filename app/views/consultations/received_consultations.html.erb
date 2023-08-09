@@ -1,6 +1,6 @@
 <h2>依頼受付一覧</h2>
 <% @consultations.each do | consultation | %>
-  <% if consultation.status == "requesting" %>
+  <% if consultation.request_status == "requesting" %>
     <div class="card">
       <div class="card-body">
         <%= link_to user_consultation_path(consultation.consultant, consultation.id) do %>

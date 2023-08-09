@@ -11,7 +11,7 @@ class ConsultationsController < ApplicationController
   # アイデア相談を依頼する
   def create
     @user = User.find(params[:user_id])
-    @consultation = Consultation.new(consultation_params.merge(consultant: @user, status: :requesting))
+    @consultation = Consultation.new(consultation_params.merge(consultant: @user, request_status: :requesting))
 
     if @consultation.save
       # 保存成功時の処理
@@ -31,14 +31,15 @@ class ConsultationsController < ApplicationController
   # アイデア相談の依頼を受ける
   def accept
     @consultation = Consultation.find(params[:id])
-    @consultation.update(status: "matching")
+    @consultation.update(request_status: "completed")
+    @consultation.talkroom_status = "opened"
     redirect_to root_path, notice: '依頼を受けました'
   end
 
   # アイデア相談の依頼を断る
   def reject
     @consultation = Consultation.find(params[:id])
-    @consultation.update(status: "closed")
+    @consultation.update(request_status: "completed")
     redirect_to root_path, notice: '依頼を断りました'
   end
 
