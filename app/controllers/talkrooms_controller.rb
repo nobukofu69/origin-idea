@@ -1,7 +1,8 @@
-# app/controllers/talkrooms_controller.rb
 class TalkroomsController < ApplicationController
+  # 作成されたトークルーム一覧を表示する
   def index
-    @consultations = Consultation.includes(:requester, :consultant).where(status: [2, 3])
+    @consultations = Consultation.includes(:requester, :consultant)
+      .where(has_talkroom: true)
       .where("requester_id = ? OR consultant_id = ?", current_user.id, current_user.id)
   end
 
