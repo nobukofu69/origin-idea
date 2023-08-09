@@ -1,4 +1,5 @@
 class ConsultationsController < ApplicationController
+  # アイデア相談の依頼画面を表示する
   def new
     @user = User.find(params[:user_id])
     @consultation = Consultation.new
@@ -7,6 +8,7 @@ class ConsultationsController < ApplicationController
     end
   end
 
+  # アイデア相談を依頼する
   def create
     @user = User.find(params[:user_id])
     @consultation = Consultation.new(consultation_params.merge(consultant: @user, status: :requesting))
@@ -20,21 +22,24 @@ class ConsultationsController < ApplicationController
     end
   end
 
+  # アイデア相談の詳細画面を表示する(相談を受けたユーザーのみ)
   def show
     @consultation = Consultation.find(params[:id])
     @requester = User.find(@consultation.requester_id)
   end
 
+  # アイデア相談の依頼を受ける
   def accept
     @consultation = Consultation.find(params[:id])
     @consultation.update(status: "matching")
-    redirect_to root_path, notice: 'コンサル依頼を受けました'
+    redirect_to root_path, notice: '依頼を受けました'
   end
 
+  # アイデア相談の依頼を断る
   def reject
     @consultation = Consultation.find(params[:id])
     @consultation.update(status: "closed")
-    redirect_to root_path, notice: 'コンサル依頼を断りました'
+    redirect_to root_path, notice: '依頼を断りました'
   end
 
 
@@ -45,6 +50,7 @@ class ConsultationsController < ApplicationController
 
   private
 
+  # ストロングパラメーター
   def consultation_params
     params.require(:consultation).permit(:request_content, :answer_deadline).merge(requester_id: current_user.id)
   end
