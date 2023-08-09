@@ -7,5 +7,6 @@ class TalkroomsController < ApplicationController
 
   def show
     @consultation = Consultation.find(params[:consultation_id])
+    @messages = @consultation.messages.includes(:sender)
   end
 end
