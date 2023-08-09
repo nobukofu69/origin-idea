@@ -1,2 +1,16 @@
-<h1>Talkrooms#show</h1>
-<p>Find me in app/views/talkrooms/show.html.erb</p>
+<h2><%= @consultation.other_user(current_user).username %>さん</h2>
+<!-- オープン中のトークルーム､かつ､ユーザーが依頼者の場合のみ､相談を終了するボタンを表示 -->
+<% if @@consultation.talkroom_status == "opened" && @consultation.requester == current_user %>
+  <%= link_to '相談を終了する', talkroom_talkrooms_path(@consultation), data: { turbo_method: :patch, turbo_confirm: "本当に終了しますか？"} %>
+<% end %>
+<!-- チャットメッセージの表示場所 -->
+<%= render @messages %>
+<div id ='messages'></div>
+
+<!-- チャットメッセージの入力フォーム -->
+<% if @consultation.talkroom_status == "opened" %>
+  <form>
+    <label for="content">メッセージ：</label>
+    <input type="text" id="content" size="50" /><br/>
+  </form>
+<% end %>

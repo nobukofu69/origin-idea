@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # 既に依頼済みかどうかを判定する
-    @already_requested = Consultation.where(requester: current_user, consultant: @user, status: [1, 2]).exists?
+    # current_userが@userに対して相談中またはトークルームを作成済みの場合､trueを返す
+    @already_requested = Consultation.where(requester: current_user,
+      consultant: @user, request_status: :requesting, talkroom_status: :opened).exists?
   end
 
   def edit

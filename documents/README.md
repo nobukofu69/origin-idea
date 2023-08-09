@@ -42,7 +42,8 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | requester_id | INTEGER | No | FK | | | 依頼者ID |
 | request_content | TEXT | No | | | | 依頼内容 |
 | answer_deadline | DATETIME | No | | | | 回答期限 |
-| status | INTEGER | No | | 0 | | 依頼内容のステータス |
+| request_status | INTEGER | No | | 0 | | 依頼内容のステータス |
+| talkroom_status | INTEGER | No | | 0 | | トークルームのステータス |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
 - 外部キー制約
   - `consultant_id` は `users.id` に紐づく
@@ -55,6 +56,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | sender_id | INTEGER | No | FK | | | 送信者ID |
 | consultation_id | INTEGER | No | FK | | | コンサルテーションID |
 | content | TEXT | No | | | | メッセージ内容 |
+| sent_at | DATETIME | No | | | | 送信日時 |
 | is_read | BOOLEAN | No | | False | | 既読フラグ |
 - 外部キー制約
   - `sender_id` は `users.id` に紐づく

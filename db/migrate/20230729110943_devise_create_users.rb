@@ -33,15 +33,15 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       # Custom fields
-      t.string  :username
-      t.integer :age
+      t.string  :username, null: false
+      t.date    :birthdate
       t.string  :gender
       t.string  :profession
       t.text    :profile
       t.string  :profile_image_id
       t.text    :skill
       t.string  :rating
-      t.boolean  :is_consultant, default: false
+      t.boolean  :is_consultant, null: false, default: false
       t.timestamps null: false
     end
 
