@@ -16,7 +16,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_093125) do
     t.bigint "requester_id", null: false
     t.text "request_content", null: false
     t.datetime "answer_deadline", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "request_status", default: 0, null: false
+    t.integer "talkroom_status", default: 0, null: false
     t.boolean "is_read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
