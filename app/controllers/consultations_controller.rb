@@ -43,7 +43,7 @@ class ConsultationsController < ApplicationController
   end
 
 
-  # ユーザーが受けたコンサル依頼一覧を表示する
+  # アイデア相談依頼の受付一覧を表示する
   def received_consultations
     @consultations = Consultation.includes(:requester).where(consultant: current_user)
   end
