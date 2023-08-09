@@ -13,7 +13,7 @@ class ConsultationsController < ApplicationController
 
     if @consultation.save
       # 保存成功時の処理
-      redirect_to root_path, notice: 'コンサル依頼が完了しました'
+      redirect_to root_path, notice: 'アイデア相談を依頼しました'
     else
       # 保存失敗時の処理
       render :new
