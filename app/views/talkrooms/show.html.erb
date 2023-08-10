@@ -1,5 +1,5 @@
 <div id="talk-room" data-talkroom-status="<%= @consultation.talkroom_status %>">
-  <h2><%= @consultation.other_user(current_user).username %>さん</h2>
+  <h2><%= @consultation.other_user(current_user).name %>さん</h2>
   <!-- オープン中のトークルーム､かつ､ユーザーが依頼者の場合のみ､相談を終了するボタンを表示 -->
   <% if @consultation.talkroom_status == "opened" && @consultation.requester == current_user %>
     <%= link_to '相談を終了する', talkroom_talkrooms_path(@consultation), data: { turbo_method: :patch, turbo_confirm: "本当に終了しますか？"} %>
