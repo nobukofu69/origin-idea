@@ -53,8 +53,8 @@ class User < ApplicationRecord
   end
 
   # ログインユーザーがゲストユーザーかどうかを判定する
-  def guest_user?(current_user)
-    current_user == User.find_by(email: 'guest@example.com')
+  def guest_user?
+    self.email == 'guest@example.com'
   end
 
   private
