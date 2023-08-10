@@ -16,6 +16,5 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 
 # Bundlerの実行
 RUN gem update --system ${RUBYGEMS_VERSION} && \
-    bundle config --local set path 'vendor/bundle' && \
-    bundle update --bundler && \
-    bundle install  
+    bundle config set path 'vendor/bundle' && \
+    bundle install
