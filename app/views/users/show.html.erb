@@ -2,8 +2,8 @@
 <p><%= @user.age %>才 <%= translate_gender(@user.gender) %></p>
 <p><%= @user.profession %></p>
 
-<%# 自分のページを見ている場合 %>
-<% if current_user == @user %>
+<%# ログインユーザー(ゲストユーザー以外)が自分のページを見ている場合 %>
+<% if current_user == @user && !@user.guest_user? %>
   <%#  受付ステータスによって表示を変える %>
   <% if @user.is_consultant %>
     <%= turbo_frame_tag 'toggle_consultant_status' do %>
@@ -17,12 +17,11 @@
     <% end %>
   <% end %>
   <%= link_to "プロフィールを編集する", edit_user_path(@user) %>
-<%# 自分以外のページを見ている場合 %>
-<% else %>
-  <%# current_userがこのユーザーに相談を依頼していない場合のみ表示 %>
-  <% if !@already_requested %>
-    <%= link_to "アイデアの相談をする", new_user_consultation_path(@user) %>
-  <% end %>
+<% end %>
+
+<%# まだ相談していないユーザーにのみ､以下のリンクを表示する %>
+<% if @not_consulted %>
+  <%= link_to "アイデアの相談をする", new_user_consultation_path(@user) %>
 <% end %>
 
 <p>プロフィール</p>
