@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # Custom fields
       t.string  :name, null: false
       t.date    :birthdate
-      t.string  :gender
+      t.integer :gender, default: 0, null: false
       t.string  :profession
       t.text    :profile
       t.string  :profile_image_id
