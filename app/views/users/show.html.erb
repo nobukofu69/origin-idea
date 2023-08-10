@@ -1,6 +1,6 @@
 <h2><%= @user.username %></h2>
 
-<%# ログインユーザーが自分のページを見ている場合のみ表示 %>
+<%# 自分のページを見ている場合 %>
 <% if current_user == @user %>
   <%#  受付ステータスによって表示を変える %>
   <% if @user.is_consultant %>
@@ -14,6 +14,8 @@
         data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
     <% end %>
   <% end %>
+  <%= link_to "プロフィールを編集する", edit_user_path(@user) %>
+<%# 自分以外のページを見ている場合 %>
 <% else %>
   <%# current_userがこのユーザーに相談を依頼していない場合のみ表示 %>
   <% if !@already_requested %>

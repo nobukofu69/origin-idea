@@ -1,35 +1,42 @@
 import consumer from "channels/consumer"
 
-// URLからconsultation_idを取得
-const url = window.location.href;
-const consultationId = url.split('/')[4];
+// トークルームの要素を取得
+const talkRoom = document.getElementById('talk-room');
 
-// サブスクリプションを作成
-const appChat = consumer.subscriptions.create("TalkroomChannel", {
-  connected() {
-  },
+// トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ以下の処理を実行
+if (talkRoom && talkRoom.dataset.talkroomStatus !== 'closed') {
 
-  disconnected() {
-  },
+  // URLからconsultation_idを取得
+  const url = window.location.href;
+  const consultationId = url.split('/')[4];
 
-  received(data) {
-    const messages = document.getElementById('messages');
-    messages.insertAdjacentHTML('afterbegin', data['message']);
-  },
+  // サブスクリプションを作成
+  const appChat = consumer.subscriptions.create("TalkroomChannel", {
+    connected() {
+    },
 
-  speak(data) {
-    return this.perform('speak', data);
-  }
-});
+    disconnected() {
+    },
 
-window.document.onkeydown = function(event) {
-  if (event.key == 'Enter') {
-    if (event.target.value.trim() === '') {
-      alert('文字を入力してください');
-      return;
+    received(data) {
+      const messages = document.getElementById('messages');
+      messages.insertAdjacentHTML('afterbegin', data['message']);
+    },
+
+    speak(data) {
+      return this.perform('speak', data);
     }
-    appChat.speak({consultation_id: consultationId, content: event.target.value});
-    event.target.value = '';
-    event.preventDefault();
-  }
-};
+  });
+
+  document.getElementById('content').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      if (e.target.value.trim() === '') {
+        alert('文字を入力してください');
+        return;
+      }
+      appChat.speak({consultation_id: consultationId, content: e.target.value});
+      e.target.value = '';
+      e.preventDefault();
+    }
+  });
+}
