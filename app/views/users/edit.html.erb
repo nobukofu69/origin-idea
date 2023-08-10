@@ -1,2 +1,12 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>プロフィール編集</h2>
+
+<%= form_with model: @user, local: true do |f| %>
+  <%# ユーザーアイコン %>
+  <%= f.label :profile, "自己紹介" %><br>
+  <%= f.text_area :profile %><br>
+
+  <%= f.label :skill, "スキル/知識" %><br>
+  <%= f.text_area :skill %><br>
+
+  <%= f.submit "更新する" %>
+<% end %>
