@@ -22,7 +22,7 @@ https://www.figma.com/file/ew0keNTFevdtX6VqjzO40v/Origin-Idea?type=design&node-i
 | カラム名 | データ型 | NULL | キー | 初期値 | AUTO INCREMENT | 説明 |
 |------|--------|------|----|------|----------------|------|
 | id | INTEGER | No | PK | | Yes | ユーザーID |
-| username | VARCHAR(255) | No | | | | ユーザーネーム |
+| name | VARCHAR(255) | No | | | | ユーザーネーム |
 | email | VARCHAR(255) | No | UK | | | メールアドレス |
 | password | VARCHAR(255) | No | | | | パスワード |
 | birthdate | DATE | Yes | | | | 生年月日 |
