@@ -2,6 +2,9 @@
 
 <%= form_with model: @user, local: true do |f| %>
   <%# ユーザーアイコン %>
+  <%= f.label :profession, "職業" %><br>
+  <%= f.text_field :profession %><br>
+
   <%= f.label :profile, "自己紹介" %><br>
   <%= f.text_area :profile %><br>
 
