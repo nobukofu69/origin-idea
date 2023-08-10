@@ -18,7 +18,7 @@ class ConsultationsController < ApplicationController
       redirect_to root_path, notice: 'アイデア相談を依頼しました'
     else
       # 保存失敗時の処理
-      render :new
+      render :new, alert: 'アイデア相談の依頼に失敗しました'
     end
   end
 
