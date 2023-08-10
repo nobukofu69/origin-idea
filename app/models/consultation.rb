@@ -10,4 +10,12 @@ class Consultation < ApplicationRecord
   def other_user(current_user)
     requester == current_user ? consultant : requester
   end
+
+  # ログインユーザーが相談を依頼していない場合に trueを返す
+  def self.not_consulted?(current_user, user)
+    where(requester: current_user, consultant: user)
+      .where.not(request_status: :requesting)
+      .where.not(talkroom_status: :opened)
+      .exists?
+  end
 end
