@@ -1,5 +1,5 @@
 <h2>コンサル依頼ページ</h2>
-<%=  link_to @user.username, user_path(@user) %>さんに希望する内容を入力しましょう｡
+<%=  link_to @user.name, user_path(@user) %>さんに希望する内容を入力しましょう｡
 <%= form_with model: [@user, @consultation], local: true,
     html: { data: { turbo_confirm: "依頼を送信してよろしいですか？" } } do |f| %>
   <p>

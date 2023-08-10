@@ -1,4 +1,4 @@
-<h2><%= @user.username %></h2>
+<h2><%= @user.name %></h2>
 
 <%# 自分のページを見ている場合 %>
 <% if current_user == @user %>
@@ -22,3 +22,11 @@
     <%= link_to "アイデアの相談をする", new_user_consultation_path(@user) %>
   <% end %>
 <% end %>
+
+<p>プロフィール</p>
+<%= @user.profile %>
+
+<p>スキル/知識</p>
+<%= simple_format @user.skill %>
+
+

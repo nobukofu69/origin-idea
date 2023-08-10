@@ -3,6 +3,6 @@
   <%= link_to talkroom_talkrooms_path(consultation) do %>
     <%# トーク相手のユーザー名を表示 %>
     <% other_user = consultation.other_user(current_user) %>
-    <p><%= other_user.username %></p>
+    <p><%= other_user.name %></p>
   <% end %>
 <% end %>
