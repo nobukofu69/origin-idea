@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :requesters, class_name: 'Consultation', foreign_key: 'requester_id'
   has_many :senders, class_name: 'Message', foreign_key: 'sender_id'
 
+  # ユーザーの年齢を返す
   def age
     now = Time.current.to_date
     birth_date = self.birthdate
@@ -20,5 +21,12 @@ class User < ApplicationRecord
     end
 
     age
+  end
+
+  # ゲストユーザーを作成
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
   end
 end
