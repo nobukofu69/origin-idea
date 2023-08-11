@@ -9,7 +9,6 @@ addEventListener('turbo:load', () => {
 
   // トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ以下の処理を実行
   if (talkRoom && talkRoom.dataset.talkroomStatus == 'opened') {
-    console.log('トークルームはオープンだね')
 
     // URLからconsultation_idを取得
     const url = window.location.href;
