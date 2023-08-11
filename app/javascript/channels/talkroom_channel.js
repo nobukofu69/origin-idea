@@ -1,42 +1,55 @@
 import consumer from "channels/consumer"
 
-// トークルームの要素を取得
-const talkRoom = document.getElementById('talk-room');
+// 外部でappChatを定義
+let appChat;
 
-// トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ以下の処理を実行
-if (talkRoom && talkRoom.dataset.talkroomStatus !== 'closed') {
+addEventListener('turbo:load', () => {
+  // トークルームの要素を取得
+  const talkRoom = document.getElementById('talk-room');
 
-  // URLからconsultation_idを取得
-  const url = window.location.href;
-  const consultationId = url.split('/')[4];
+  // トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ以下の処理を実行
+  if (talkRoom && talkRoom.dataset.talkroomStatus == 'opened') {
+    console.log('トークルームはオープンだね')
 
-  // サブスクリプションを作成
-  const appChat = consumer.subscriptions.create("TalkroomChannel", {
-    connected() {
-    },
+    // URLからconsultation_idを取得
+    const url = window.location.href;
+    const consultationId = url.split('/')[4];
 
-    disconnected() {
-    },
+    // サブスクリプションを作成
+    appChat = consumer.subscriptions.create("TalkroomChannel", {
+      connected() {
+      },
 
-    received(data) {
-      const messages = document.getElementById('messages');
-      messages.insertAdjacentHTML('beforeend', data['message']);
-    },
+      disconnected() {
+      },
 
-    speak(data) {
-      return this.perform('speak', data);
-    }
-  });
+      received(data) {
+        const messages = document.getElementById('messages');
+        messages.insertAdjacentHTML('beforeend', data['message']);
+      },
 
-  document.getElementById('content').addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      if (e.target.value.trim() === '') {
-        alert('文字を入力してください');
-        return;
+      speak(data) {
+        return this.perform('speak', data);
       }
-      appChat.speak({consultation_id: consultationId, content: e.target.value});
-      e.target.value = '';
-      e.preventDefault();
-    }
-  });
-}
+    });
+
+    document.getElementById('content').addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        if (e.target.value.trim() === '') {
+          alert('文字を入力してください');
+          return;
+        }
+        appChat.speak({consultation_id: consultationId, content: e.target.value});
+        e.target.value = '';
+        e.preventDefault();
+      }
+    });
+  }
+});
+
+// ページがアンロードされる前にサブスクリプションを解除
+addEventListener('turbo:before-cache', () => {
+  if (appChat) {
+    appChat.unsubscribe();
+  }
+});
