@@ -20,7 +20,7 @@ if (talkRoom && talkRoom.dataset.talkroomStatus !== 'closed') {
 
     received(data) {
       const messages = document.getElementById('messages');
-      messages.insertAdjacentHTML('afterbegin', data['message']);
+      messages.insertAdjacentHTML('beforeend', data['message']);
     },
 
     speak(data) {
