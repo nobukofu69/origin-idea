@@ -1,0 +1,411 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@300;400;500&family=Poiret+One&family=Poppins:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Poppins:wght@100&display=swap');
+
+
+
+// common.scss
+
+body {
+  font-family: 'Noto Sans JP', 'Meiryo', sans-serif;
+}
+
+p {
+  font-size: 16px;
+  color: #172a33;
+}
+
+h1 {
+  font-size: 24px;
+  color: #536167;
+}
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+.content-wrapper {
+  margin: 20px; /* ここで余白のサイズを調整できるよ */
+}
+
+// ログイン
+.login-container {
+  text-align: center;
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #f2f2f2;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-form .field {
+  margin: 15px 0;
+}
+
+.input-field {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.guest-link {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.guest-link:hover {
+  text-decoration: underline;
+}
+
+.actions, p, .guest-link, .login-button {
+  text-align: center;
+}
+
+.login-button, .guest-link, .shared-links a {
+  display: block;
+  margin: 0 auto;
+}
+
+.actions,
+.field {
+  margin: 15px 0;
+}
+
+// ヘッダー
+
+.navbar-nav li {
+  margin-left: 10px;
+  color: #fff;
+}
+
+.mint-green-navbar {
+  background: linear-gradient(to right, #a8e6cf, #d5f4e6); /* 左から右へのグラデーション */
+}
+
+
+// Grid.scss
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.col-md-4 {
+  padding: 10px;
+}
+
+.row {
+  margin: 10px;
+}
+
+// フォーム
+
+.form-control,
+.form-control-L {
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-control-L {
+  width: 100%;
+  height: 150px; /* テキストエリアの高さを大きく */
+  padding: 15px; /* 内部の余白を追加 */
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0; /* アイデア相談画面と同じボーダー */
+  border-radius: 5px;
+}
+
+// ユーザー詳細画面
+
+.group-a {
+  margin-right: 40px;
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn {
+  color: #fff;
+}
+
+.btn-custom {
+  background-color: #a8a8a8;
+  color: white;
+}
+
+.consultant-controls .btn {
+  margin-left: 15px;
+}
+
+.user-profile-content,
+.user-skill-content {
+  text-align: center;
+  margin: 30px auto;
+  width: 70%;
+  border: 1px solid #e0e0e0; /* 薄い線で囲う */
+  padding: 10px; /* 内部の余白を追加 */
+  box-sizing: border-box; /* paddingを含めたサイズにする */
+}
+
+.content-box p {
+  margin: 2rem;
+}
+
+.user-skill-content p {
+  margin: 2rem;
+}
+
+// ユーザーの編集画面
+
+.edit-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center; /* タイトルを真ん中寄せに */
+}
+
+.edit-form {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center; /* ボタンを真ん中寄せに */
+}
+
+.form-group {
+  margin: 15px;
+}
+
+.form-group label {
+  margin: 10px;
+  display: block;
+  text-align: center;
+}
+
+.edit-form .btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: inline-block; /* ボタンをインライン要素に */
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+// アイデア相談の依頼画面
+
+.request-form {
+  text-align: center;
+  margin: 30px auto;
+  width: 70%;
+}
+
+.request-form p {
+  margin: 10px;
+}
+
+.request-detail p {
+  margin: 20px;
+}
+
+.request-form label,
+.request-form select,
+.request-form textarea {
+  display: block;
+  margin: 0 auto 15px auto;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.request-form select,
+.request-form textarea {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+}
+
+.request-form .btn-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+// 依頼詳細画面
+
+.request-details {
+  margin: 0 auto;
+}
+
+.request-details h2 {
+  margin-bottom: 20px;
+}
+
+.request-details h4 {
+  margin: 30px 0 0px;
+}
+
+.requester {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.actions .btn,
+.actions .btn-reject {
+  width: 40%;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  display: block;
+  margin: 10px auto;
+  border-radius: 0px;
+}
+
+.actions .btn-reject {
+  background-color: #ff5733; /* 断るボタンの背景色を変更 */
+}
+
+.consultation-detail {
+  text-align: center;
+}
+
+.request-details,
+.consultation-detail p {
+  margin: 2rem;
+}
+
+.consultation-content {
+  text-align: center;
+  margin: 30px auto;
+  width: 70%;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+// トークルーム
+
+#talk-room {
+  max-width: 800px;
+  margin: auto;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#talk-room h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#talk-room a {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 20px;
+  background-color: #f55;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#talk-room #messages {
+  height: 400px;
+  overflow-y: scroll;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#talk-room form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#talk-room label {
+  flex: 1;
+}
+
+#talk-room input {
+  flex: 4;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+// メッセージ
+
+#talk-room #messages {
+  max-height: 500px; /* 好みの高さに調整する */
+  overflow-y: auto;
+}
+
+
+#talk-room #messages > div {
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+#talk-room #messages > div p:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+#talk-room #messages > div p:nth-child(2) {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #555;
+}
+
+#talk-room #messages > div p:last-child {
+  font-size: 12px;
+  text-align: right;
+  color: #aaa;
+}

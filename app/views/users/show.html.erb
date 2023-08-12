@@ -1,32 +1,43 @@
-<h2><%= @user.name %></h2>
-
-<%# 自分のページを見ている場合 %>
-<% if current_user == @user %>
-  <%#  受付ステータスによって表示を変える %>
-  <% if @user.is_consultant %>
-    <%= turbo_frame_tag 'toggle_consultant_status' do %>
-      <%= link_to "受付を停止する", toggle_consultant_status_user_path(@user),
-        data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
+<div class="profile-section">
+  <div class="group-a">
+    <div>
+      <p class="user-name"><%= @user.name %></p>
+      <p class="user-details"><%= @user.age %>才 <%= translate_gender(@user.gender) %> | <%= @user.profession %></p>
+    </div>
+    <%# ログインユーザー(非ゲスト)が自分のプロフィールページを見ている場合 %>
+    <% if current_user == @user && !@user.guest_user? %>
+      <div class="consultant-controls">
+        <%#  受付ステータスによって表示を変える %>
+        <% if @user.is_consultant %>
+          <%= turbo_frame_tag 'toggle_consultant_status' do %>
+            <%= link_to "受付を停止する", toggle_consultant_status_user_path(@user),
+              data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' },
+              class: 'btn btn-danger' %>
+          <% end %>
+        <% else %>
+          <%= turbo_frame_tag 'toggle_consultant_status' do %>
+            <%= link_to "受付を開始する", toggle_consultant_status_user_path(@user),
+              data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' },
+              class: 'btn btn-success' %>
+          <% end %>
+        <% end %>
+        <%= link_to "プロフィールを編集する", edit_user_path(@user), class: 'btn btn-primary' %>
+      </div>
+    <% else %> <%# ログインユーザー(ゲスト含む)が@userにコンサル依頼していない場合 %>
+      <% if @not_consulted %>
+        <%= link_to "アイデアの相談をする", new_user_consultation_path(@user), class: 'btn btn-info' %>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= turbo_frame_tag 'toggle_consultant_status' do %>
-      <%= link_to "受付を開始する", toggle_consultant_status_user_path(@user),
-        data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' } %>
-    <% end %>
-  <% end %>
-  <%= link_to "プロフィールを編集する", edit_user_path(@user) %>
-<%# 自分以外のページを見ている場合 %>
-<% else %>
-  <%# current_userがこのユーザーに相談を依頼していない場合のみ表示 %>
-  <% if !@already_requested %>
-    <%= link_to "アイデアの相談をする", new_user_consultation_path(@user) %>
-  <% end %>
-<% end %>
+  </div>
 
-<p>プロフィール</p>
-<%= @user.profile %>
-
-<p>スキル/知識</p>
-<%= simple_format @user.skill %>
-
-
+  <div class="user-profile">
+    <h4>自己紹介</h4>
+    <div class="user-profile-content content-box">
+      <%= simple_format @user.profile %>
+    </div>
+    <h4>スキル/知識</h4>
+    <div class="user-skill-content content-box">
+      <%= simple_format @user.skill %>
+    </div>
+  </div>
+</div>

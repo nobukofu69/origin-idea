@@ -1,18 +1,19 @@
-<h2>コンサル依頼ページ</h2>
-<%=  link_to @user.name, user_path(@user) %>さんに希望する内容を入力しましょう｡
-<%= form_with model: [@user, @consultation], local: true,
-    html: { data: { turbo_confirm: "依頼を送信してよろしいですか？" } } do |f| %>
-  <p>
-    <%= f.label :request_content, "相談内容" %><br>
-    <%= f.text_area :request_content %>
-  </p>
-  <p>
-    <%= f.label :answer_deadline, "提案期限" %>
-    <%= f.select :answer_deadline, @answer_deadlines %>
-  </p>
-  <p>
-    <%= f.submit "依頼する" %>
-  </p>
-<% end %>
+<div class="request-form">
+  <h2>相談依頼</h2>
+  <p><%= link_to @user.name, user_path(@user) %>さんに希望する内容を入力しましょう。</p>
+  <%= form_with model: [@user, @consultation], local: true,
+      html: { data: { turbo_confirm: "依頼を送信してよろしいですか？" }, class: 'form-content' } do |f| %>
+    <div class="request-detail">
+      <p><%= f.label :request_content, "相談内容" %></p>
+      <%= f.text_area :request_content, class: 'form-control-L' %>
+    </div>
 
-
+    <div class="request-detail">
+      <p><%= f.label :answer_deadline, "提案期限" %></p>
+      <%= f.select :answer_deadline, @answer_deadlines %>
+    </div>
+    <p>
+      <%= f.submit "依頼する", class: 'btn-submit' %>
+    </p>
+  <% end %>
+</div>

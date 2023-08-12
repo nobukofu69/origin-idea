@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_06_093125) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.date "birthdate"
-    t.string "gender"
+    t.integer "gender", default: 0, null: false
     t.string "profession"
     t.text "profile"
     t.string "profile_image_id"

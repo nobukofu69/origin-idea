@@ -1,13 +1,23 @@
 <%# is read をtrueにする実装予定 %>
-<h2>依頼詳細</h2>
-<%# アイコン 実装予定%>
-<%= link_to @requester.name, user_path(@requester) %>さんからの依頼
-<h3>相談内容</h3>
-<p><%= @consultation.request_content %></p>
-<h3>提案期限</h3>
-<p><%= @consultation.answer_deadline.strftime('%Y年%m月%d日中') %></p>
+<div class="request-details">
+  <h2>依頼詳細</h2>
+  <%# アイコン 実装予定 %>
+  <p class="requester"><%= link_to @requester.name, user_path(@requester) %>さんからの依頼</p>
+ 
+<div class="consultation-detail">
+  <h4>相談内容</h4>
+  <div class="consultation-content"><%= simple_format @consultation.request_content %></div>
+</div>
 
-<%= link_to "依頼を受ける", accept_user_consultation_path(@consultation.consultant, @consultation),
-    data: { turbo_method: :patch, turbo_confirm: "依頼を受けてよろしいですか？" } %>
-<%= link_to "依頼を断る", reject_user_consultation_path(@consultation.consultant, @consultation),
-    data: { turbo_method: :patch, turbo_confirm: "依頼を断ってよろしいですか？" } %>
+<div class="consultation-detail">
+  <h4>提案期限</h4>
+  <div><%= simple_format @consultation.answer_deadline.strftime('%Y年%m月%d日中') %></div>
+</div>
+
+  <div class="actions">
+    <%= link_to "依頼を受ける", accept_user_consultation_path(@consultation.consultant, @consultation),
+        class: 'btn', data: { turbo_method: :patch, turbo_confirm: "依頼を受けてよろしいですか？" } %>
+    <%= link_to "依頼を断る", reject_user_consultation_path(@consultation.consultant, @consultation),
+        class: 'btn-reject', data: { turbo_method: :patch, turbo_confirm: "依頼を断ってよろしいですか？" } %>
+  </div>
+</div>
