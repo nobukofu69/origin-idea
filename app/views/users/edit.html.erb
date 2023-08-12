@@ -1,15 +1,20 @@
-<h2>プロフィール編集</h2>
+<h2 class="edit-title">プロフィール編集</h2>
 
-<%= form_with model: @user, local: true do |f| %>
-  <%# ユーザーアイコン %>
-  <%= f.label :profession, "職業" %><br>
-  <%= f.text_field :profession %><br>
+<%= form_with model: @user, local: true, html: { class: 'edit-form' } do |f| %>
+  <div class="form-group">
+    <%= f.label :profession, "職業" %>
+    <%= f.text_field :profession, class: 'form-control' %>
+  </div>
 
-  <%= f.label :profile, "自己紹介" %><br>
-  <%= f.text_area :profile %><br>
+  <div class="form-group">
+    <%= f.label :profile, "自己紹介" %>
+    <%= f.text_area :profile, class: 'form-control-L' %>
+  </div>
 
-  <%= f.label :skill, "スキル/知識" %><br>
-  <%= f.text_area :skill %><br>
+  <div class="form-group">
+    <%= f.label :skill, "スキル/知識" %>
+    <%= f.text_area :skill, class: 'form-control-L' %>
+  </div>
 
-  <%= f.submit "更新する" %>
+  <%= f.submit "更新する", class: 'btn btn-primary' %>
 <% end %>

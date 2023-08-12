@@ -1,18 +1,20 @@
 <h2>依頼受付一覧</h2>
 <% @consultations.each do | consultation | %>
   <% if consultation.request_status == "requesting" %>
-    <div class="card">
-      <div class="card-body">
-        <%= link_to user_consultation_path(consultation.consultant, consultation.id) do %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to user_consultation_path(consultation.consultant, consultation.id) do %>
 
-          <%# ユーザーアイコン実装予定 %>
+            <%# ユーザーアイコン実装予定 %>
 
-          <%# ユーザー名 %>
-          <h5 class="card-title"><%= consultation.requester.name %></h5>
+            <%# ユーザー名 %>
+            <h5 class="card-title"><%= consultation.requester.name %></h5>
 
-          <%# 職業 %>
-          <p class="card-text"><%= consultation.requester.profession %></p>
-        <% end %>
+            <%# 職業 %>
+            <p class="card-text"><%= consultation.requester.profession %></p>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

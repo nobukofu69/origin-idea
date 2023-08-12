@@ -25,6 +25,7 @@ addEventListener('turbo:load', () => {
       received(data) {
         const messages = document.getElementById('messages');
         messages.insertAdjacentHTML('beforeend', data['message']);
+        messages.scrollTop = messages.scrollHeight;
       },
 
       speak(data) {
@@ -51,4 +52,10 @@ addEventListener('turbo:before-cache', () => {
   if (appChat) {
     appChat.unsubscribe();
   }
+});
+
+// メッセージのスクロールを一番下にする
+document.addEventListener('DOMContentLoaded', function() {
+  var messagesDiv = document.getElementById('messages');
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 });

@@ -6,16 +6,15 @@ class Consultation < ApplicationRecord
   has_many :messages
   validates :request_content, presence: true
 
+  # ログインユーザーが相談を依頼していない場合に trueを返すクラスメソッド
+  def self.not_consulted?(current_user, user)
+    where(requester: current_user, consultant: user)
+      .where('request_status = ? OR talkroom_status = ?', :requesting, :opened)
+      .exists?.!
+  end
+
   # ログインユーザー以外のユーザーを取得する
   def other_user(current_user)
     requester == current_user ? consultant : requester
-  end
-
-  # ログインユーザーが相談を依頼していない場合に trueを返す
-  def self.not_consulted?(current_user, user)
-    where(requester: current_user, consultant: user)
-      .where.not(request_status: :requesting)
-      .where.not(talkroom_status: :opened)
-      .exists?
   end
 end
