@@ -3,42 +3,45 @@
 entity "users" as users {
   + id [PK]
   --
-  username
-  password
+  name
   email
+  password
+  birthdate
+  gender
   profession
-  age
+  profile
+  profile_image
+  skill
   rating
   is_consultant
 }
 
-entity "requests" as requests {
+entity "consultations" as consultations {
   + id [PK]
   --
-  requester_id [FK]
   consultant_id [FK]
+  requester_id [FK]
   --
   request_content
-  request_date
-  status
-  is_read
+  answer_deadline
+  request_status
   talk_room_status
+  is_read
 }
 
 entity "messages" as messages {
   + id [PK]
   --
-  request_id [FK]
   sender_id [FK]
-  receiver_id [FK]
+  consultations_id [FK]
   --
-  message_content
-  message_date
+  content
+  sent_at
   is_read
 }
 
-users ||--o{ requests
-requests ||--o{ messages
+users ||--o{ consultations
+consultations ||--o{ messages
 users ||--o{ messages
 
 
