@@ -34,6 +34,7 @@ h4 {
 }
 
 .content-wrapper {
+  height: 90vh;
   margin: 20px; /* ここで余白のサイズを調整できるよ */
 }
 
@@ -327,6 +328,7 @@ h4 {
 
 #talk-room {
   max-width: 800px;
+  height: auto;
   margin: auto;
   background-color: #f5f5f5;
   padding: 15px;
@@ -352,7 +354,6 @@ h4 {
 }
 
 #talk-room #messages {
-  height: 400px;
   overflow-y: scroll;
   padding: 10px;
   border: 1px solid #e0e0e0;
@@ -370,20 +371,29 @@ h4 {
   flex: 1;
 }
 
-#talk-room input {
+#talk-room textarea {
   flex: 4;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+#talk-room .btn-send {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 // メッセージ
 
 #talk-room #messages {
-  max-height: 500px; /* 好みの高さに調整する */
+  max-height: 70vh;
   overflow-y: auto;
 }
-
 
 #talk-room #messages > div {
   margin: 10px;
@@ -408,4 +418,16 @@ h4 {
   font-size: 12px;
   text-align: right;
   color: #aaa;
+}
+
+// フッター
+.footer-content {
+  background: linear-gradient(to right, #f5f5dc, #faf3e0);
+  padding: 30px;
+  color: #555;
+  text-align: center;
+}
+
+small {
+  font-size: 0.8em;
 }

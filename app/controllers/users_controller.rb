@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
- 
   def show
     @user = User.find(params[:id])
     # ログインユーザーが@userに相談を依頼していない場合､インスタンス変数にtrueを代入する
@@ -26,8 +25,8 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:birth_date, :gender, :profession, :profile, :skill)
   end
-
 end

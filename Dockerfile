@@ -35,8 +35,9 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
 # bundlerをインストール
 RUN /root/.rbenv/shims/gem install bundler
 
-# 以降のコマンドでrbenvのパスを通す
+# rbenvとgemのパスを通す
 ENV PATH /root/.rbenv/shims:/root/.rbenv/bin:$PATH
+ENV PATH /path/to/your/app/vendor/bundle/ruby/3.1.0/bin:$PATH
 
 # 作業ディレクトリの設定
 WORKDIR /myapp

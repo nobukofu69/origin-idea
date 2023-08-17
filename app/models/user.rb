@@ -1,33 +1,32 @@
 class User < ApplicationRecord
   attr_accessor :is_guest_creation
+
   extend Devise::Models
   # # Include default devise modules. Others available are:
   # # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
 
   enum gender: { male: 0, female: 1, other: 2 }
-  has_many :consultants, class_name: 'Consultation', foreign_key: 'consultant_id'
-  has_many :requesters, class_name: 'Consultation', foreign_key: 'requester_id'
-  has_many :senders, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :consultants, class_name: 'Consultation', foreign_key: 'consultant_id', dependent: :destroy, inverse_of: :consultant
+  has_many :requesters, class_name: 'Consultation', foreign_key: 'requester_id', dependent: :destroy, inverse_of: :requester
+  has_many :senders, class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy, inverse_of: :sender
 
   validate :guest_email_cannot_be_used, unless: :is_guest_creation
 
   # ユーザーの年齢を返す
   def age
     now = Time.current.to_date
-    birth_date = self.birthdate
+    birth_date = birthdate
     age = now.year - birth_date.year
 
     # 生年月日が今日の日付より後だった場合、年齢を1引く
-    if now < birth_date.change(year: now.year)
-      age -= 1
-    end
+    age -= 1 if now < birth_date.change(year: now.year)
 
     age
   end
 
-# ゲストユーザーを作成
+  # ゲストユーザーを作成
   def self.guest
     user = find_or_initialize_by(email: 'guest@example.com')
     user.is_guest_creation = true # ゲストユーザー作成時にこのフラグを設定
@@ -54,15 +53,15 @@ class User < ApplicationRecord
 
   # ログインユーザーがゲストユーザーかどうかを判定する
   def guest_user?
-    self.email == 'guest@example.com'
+    email == 'guest@example.com'
   end
 
   private
 
   # ゲストユーザーのメールアドレスを使用できないようにする
   def guest_email_cannot_be_used
-    if email == 'guest@example.com'
-      errors.add(:email, "このメールアドレスは使用できません。")
-    end
+    return unless email == 'guest@example.com'
+
+    errors.add(:email, 'このメールアドレスは使用できません。')
   end
 end
