@@ -8,9 +8,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum gender: { male: 0, female: 1, other: 2 }
-  has_many :consultants, class_name: 'Consultation', foreign_key: 'consultant_id'
-  has_many :requesters, class_name: 'Consultation', foreign_key: 'requester_id'
-  has_many :senders, class_name: 'Message', foreign_key: 'sender_id'
+  has_many :consultants, class_name: 'Consultation', foreign_key: 'consultant_id', dependent: :destroy, inverse_of: :consultant
+  has_many :requesters, class_name: 'Consultation', foreign_key: 'requester_id', dependent: :destroy, inverse_of: :requester
+  has_many :senders, class_name: 'Message', foreign_key: 'sender_id', dependent: :destroy, inverse_of: :sender
 
   validate :guest_email_cannot_be_used, unless: :is_guest_creation
 

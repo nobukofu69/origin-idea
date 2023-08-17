@@ -9,7 +9,7 @@ class TalkroomChannel < ApplicationCable::Channel
   # クライアントがメッセージ送信に使うメソッド
   def speak(data)
     # クライアントからのデータをもとにmessageモデルを組み立てる
-    message = current_user.senders.create!(sent_at: Time.now, consultation_id: data['consultation_id'],
+    message = current_user.senders.create!(sent_at: Time.current, consultation_id: data['consultation_id'],
                                            content: data['content'])
 
     # Messageモデルをレンダリングしてtalkroom_channelへブロードキャストする
