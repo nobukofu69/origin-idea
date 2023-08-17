@@ -4,7 +4,7 @@ class ConsultationsController < ApplicationController
     @user = User.find(params[:user_id])
     @consultation = Consultation.new
     @answer_deadlines = (1..30).map do |day|
-      [ "#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日中')})", (Time.current + day.days) ]
+      ["#{day}日後(#{(Time.current + day.days).strftime('%Y年%m月%d日中')})", (Time.current + day.days)]
     end
   end
 
@@ -31,17 +31,16 @@ class ConsultationsController < ApplicationController
   # アイデア相談の依頼を受ける
   def accept
     @consultation = Consultation.find(params[:id])
-    @consultation.update(request_status: "completed", talkroom_status: "opened")
+    @consultation.update(request_status: 'completed', talkroom_status: 'opened')
     redirect_to root_path, notice: '依頼を受けました'
   end
 
   # アイデア相談の依頼を断る
   def reject
     @consultation = Consultation.find(params[:id])
-    @consultation.update(request_status: "completed", talkroom_status: "closed")
+    @consultation.update(request_status: 'completed', talkroom_status: 'closed')
     redirect_to root_path, notice: '依頼を断りました'
   end
-
 
   # アイデア相談依頼の受付一覧を表示する
   def received_consultations
