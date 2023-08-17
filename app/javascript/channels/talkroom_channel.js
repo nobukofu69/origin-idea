@@ -33,16 +33,15 @@ addEventListener('turbo:load', () => {
       }
     });
 
-    document.getElementById('content').addEventListener('keyup', (e) => {
-      if (e.key === 'Enter') {
-        if (e.target.value.trim() === '') {
-          alert('文字を入力してください');
-          return;
-        }
-        appChat.speak({consultation_id: consultationId, content: e.target.value});
-        e.target.value = '';
-        e.preventDefault();
+    document.getElementById('chat-form').addEventListener('submit', (e) => {
+      e.preventDefault(); // フォームのデフォルトの送信動作を無効化
+      const contentInput = document.getElementById('content');
+      if (contentInput.value.trim() === '') {
+        alert('文字を入力してください');
+        return;
       }
+      appChat.speak({consultation_id: consultationId, content: contentInput.value});
+      contentInput.value = '';
     });
   }
 });

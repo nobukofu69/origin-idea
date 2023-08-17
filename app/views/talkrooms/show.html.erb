@@ -13,9 +13,10 @@
 
   <!-- チャットメッセージの入力フォーム -->
   <% if @consultation.talkroom_status == "opened" %>
-    <form>
+    <form id="chat-form">
       <label for="content">メッセージ：</label>
-      <input type="text" id="content" size="50" /><br/>
+      <textarea id="content" rows="4" cols="40"></textarea>
+      <button type="submit" id="send-button" class="btn-send">送信</button><br/>
     </form>
   <% end %>
 </div>

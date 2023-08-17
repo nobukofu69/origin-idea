@@ -370,11 +370,21 @@ h4 {
   flex: 1;
 }
 
-#talk-room input {
+#talk-room textarea {
   flex: 4;
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+#talk-room .btn-send {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 // メッセージ
