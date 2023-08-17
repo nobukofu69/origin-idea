@@ -1,4 +1,10 @@
 class ConsultationsController < ApplicationController
+  # アイデア相談の詳細画面を表示する(相談を受けたユーザーのみ)
+  def show
+    @consultation = Consultation.find(params[:id])
+    @requester = User.find(@consultation.requester_id)
+  end
+
   # アイデア相談の依頼画面を表示する
   def new
     @user = User.find(params[:user_id])
@@ -20,12 +26,6 @@ class ConsultationsController < ApplicationController
       # 保存失敗時の処理
       render :new, alert: 'アイデア相談の依頼に失敗しました'
     end
-  end
-
-  # アイデア相談の詳細画面を表示する(相談を受けたユーザーのみ)
-  def show
-    @consultation = Consultation.find(params[:id])
-    @requester = User.find(@consultation.requester_id)
   end
 
   # アイデア相談の依頼を受ける
