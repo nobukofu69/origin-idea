@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
 
   root to: 'home#index'
+  get 'pages/terms', to: 'pages#terms'
+  get 'pages/privacy', to: 'pages#privacy'
 
   resources :users, only: %i[show edit update] do
     member do
