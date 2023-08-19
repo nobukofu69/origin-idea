@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
-  root to: 'home#index'
+  root to: 'home#top'
+  get 'home', to: 'home#index'
   get 'pages/terms', to: 'pages#terms'
   get 'pages/privacy', to: 'pages#privacy'
 
