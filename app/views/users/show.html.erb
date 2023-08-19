@@ -1,6 +1,6 @@
 <div class="profile-section">
   <div class="group-a">
-    <div>
+    <div class="user-info">
       <p class="user-name"><%= @user.name %></p>
       <p class="user-details"><%= @user.age %>才 <%= translate_gender(@user.gender) %> | <%= @user.profession %></p>
     </div>
@@ -9,23 +9,23 @@
       <div class="consultant-controls">
         <%#  受付ステータスによって表示を変える %>
         <% if @user.is_consultant %>
-          <%= turbo_frame_tag 'toggle_consultant_status' do %>
+          <%= turbo_frame_tag "toggle_consultant_status" do %>
             <%= link_to "受付を停止する", toggle_consultant_status_user_path(@user),
-              data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' },
-              class: 'btn btn-danger' %>
+              data: { turbo_method: :patch, turbo_action: "replace", turbo_frame: "toggle_consultant_status" },
+              class: "btn btn-danger" %>
           <% end %>
         <% else %>
-          <%= turbo_frame_tag 'toggle_consultant_status' do %>
+          <%= turbo_frame_tag "toggle_consultant_status" do %>
             <%= link_to "受付を開始する", toggle_consultant_status_user_path(@user),
-              data: { turbo_method: :patch, turbo_action: 'replace', turbo_frame: 'toggle_consultant_status' },
-              class: 'btn btn-success' %>
+              data: { turbo_method: :patch, turbo_action: "replace", turbo_frame: "toggle_consultant_status" },
+              class: "btn btn-success" %>
           <% end %>
         <% end %>
-        <%= link_to "プロフィールを編集する", edit_user_path(@user), class: 'btn btn-primary' %>
+        <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary" %>
       </div>
     <% else %> <%# ログインユーザー(ゲスト含む)が@userにコンサル依頼していない場合 %>
-      <% if @not_consulted %>
-        <%= link_to "アイデアの相談をする", new_user_consultation_path(@user), class: 'btn btn-info' %>
+      <% unless @consulted %>
+        <%= link_to "アイデアの相談をする", new_user_consultation_path(@user), class: "btn btn-info" %>
       <% end %>
     <% end %>
   </div>
