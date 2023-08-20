@@ -14,6 +14,22 @@ class Consultation < ApplicationRecord
                 Consultation.talkroom_statuses[:opened]])
   end
 
+  def self.consulted?(current_user, user)
+    query_string = <<-SQL
+      (requester_id = :current_user AND consultant_id = :user)
+      OR (requester_id = :user AND consultant_id = :current_user)
+      AND (request_status = :requesting OR talkroom_status = :opened)
+    SQL
+
+    exists?([
+      query_string,
+      current_user: current_user,
+      user: user,
+      requesting: request_statuses[:requesting],
+      opened: talkroom_statuses[:opened]
+    ])
+  end
+
   # ログインユーザー以外のユーザーを取得する
   def other_user(current_user)
     requester == current_user ? consultant : requester
