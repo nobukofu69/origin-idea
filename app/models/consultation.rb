@@ -10,8 +10,8 @@ class Consultation < ApplicationRecord
   def self.consulted?(current_user, user)
     where(requester: current_user, consultant: user)
       .exists?(['request_status = ? OR talkroom_status = ?',
-        Consultation.request_statuses[:requesting],
-        Consultation.talkroom_statuses[:opened]])
+                Consultation.request_statuses[:requesting],
+                Consultation.talkroom_statuses[:opened]])
   end
 
   # ログインユーザー以外のユーザーを取得する
