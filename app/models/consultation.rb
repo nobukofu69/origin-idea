@@ -6,14 +6,7 @@ class Consultation < ApplicationRecord
   has_many :messages, dependent: :destroy, inverse_of: :consultation
   validates :request_content, presence: true
 
-  # ログインユーザーが相談を依頼中､またはトークルームがオープン中の場合に trueを返すクラスメソッド
-  def self.consulted?(current_user, user)
-    where(requester: current_user, consultant: user)
-      .exists?(['request_status = ? OR talkroom_status = ?',
-                Consultation.request_statuses[:requesting],
-                Consultation.talkroom_statuses[:opened]])
-  end
-
+  # current_userとuser同士で相談を依頼中､またはトークルームがオープン中の場合に trueを返すクラスメソッド
   def self.consulted?(current_user, user)
     query_string = <<-SQL
       (requester_id = :current_user AND consultant_id = :user)
