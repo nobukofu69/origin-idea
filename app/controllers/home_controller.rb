@@ -1,4 +1,10 @@
 class HomeController < ApplicationController
+  def top
+    if user_signed_in?
+      redirect_to home_path
+    end
+  end
+
   def index
     # ユーザーログインしていない場合､全ユーザー(ゲストユーザー以外)を表示するガード節
     unless user_signed_in?

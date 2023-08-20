@@ -17,40 +17,43 @@
   <% if alert.present? %>
     <p class="alert"><%= alert %></p>
   <% end %>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light mint-green-navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="<%= root_path %>">
-            <h1>Origin Idea</h1>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-              <% if user_signed_in? %>
-                <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
-                <li class="nav-item active"><%= link_to "依頼受付", received_consultations_user_consultations_path(current_user), class: "nav-link" %></li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.name %>さん
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "プロフィール", user_path(current_user), class: "dropdown-item" %>
-                    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
-                  </div>
-                </li>
-              <% else %>
-                <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
-                <li class="nav-item active"><%= link_to "依頼受付", "#", class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "会員登録", new_user_registration_path, class: "nav-link" %></li>
-              <% end %>
-            </ul>
+    <%# ナビゲーションバーを隠さないページの場合 %>
+    <% if !hide_navbar? %>
+      <header>
+        <nav class="navbar navbar-expand-lg" >
+          <div class="container-fluid">
+            <a class="navbar-brand" href="<%= home_path %>">
+              <h1>Origin Idea</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <% if user_signed_in? %>
+                  <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
+                  <li class="nav-item active"><%= link_to "依頼受付", received_consultations_user_consultations_path(current_user), class: "nav-link" %></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <%= current_user.name %>さん
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <%= link_to "プロフィール", user_path(current_user), class: "dropdown-item" %>
+                      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+                    </div>
+                  </li>
+                <% else %>
+                  <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
+                  <li class="nav-item active"><%= link_to "依頼受付", "#", class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "会員登録", new_user_registration_path, class: "nav-link" %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    <% end %>
     <div class="content-wrapper">
       <%= yield %>
     </div>
