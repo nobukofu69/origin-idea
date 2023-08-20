@@ -9,8 +9,8 @@ class Consultation < ApplicationRecord
   # current_userとuser同士で相談を依頼中､またはトークルームがオープン中の場合に trueを返すクラスメソッド
   def self.consulted?(current_user, user)
     query_string = <<-SQL
-      (requester_id = :current_user AND consultant_id = :user)
-      OR (requester_id = :user AND consultant_id = :current_user)
+      ((requester_id = :current_user AND consultant_id = :user)
+      OR (requester_id = :user AND consultant_id = :current_user))
       AND (request_status = :requesting OR talkroom_status = :opened)
     SQL
 
