@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    # ログインユーザーが@userに相談を依頼していない場合､インスタンス変数にtrueを代入する
+    # ログインユーザーが@userに相談を依頼中の場合､インスタンス変数にtrueを代入する
     @consulted = Consultation.consulted?(current_user, @user)
   end
 
