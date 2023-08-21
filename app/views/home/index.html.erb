@@ -1,35 +1,51 @@
-<h2>コンサルタント一覧</h2>
-<div class="row">
-  <%# ログインユーザーが@user(ゲストユーザー)の場合 %>
-  <% if @user %>
-    <div class="col-md-4">
-      <%= link_to user_path(@user) do %>
-        <div class="card">
-          <div class="card-body">
-            <h3 class="card-title"><%= @user.name %></h3>
-            <p class="card-text"><%= @user.profession %></p>
-            <p class="card-text"><%= @user.rating %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <%# ログインユーザーが一般ユーザーの場合 %>
-    <% @users.each do |user| %>
-      <%# コンサルタントのみ表示 %>
-      <% if user.is_consultant %>
-        <div class="col-md-4">
+<div class="home-container">
+  <h2>コンサルタント一覧</h2>
+  <div class="row">
+    <%# ログインユーザーが@user(ゲストユーザー)の場合 %>
+    <% if @user %>
+      <div class="col-md-3">
+        <%= link_to user_path(@user) do %>
           <div class="card">
-            <div class="card-body">
-              <%= link_to user_path(user) do %>
-                <h3 class="card-title"><%= user.name %></h3>
-                <p class="card-text"><%= user.profession %></p>
-                <p class="card-text"><%= user.rating %></p>
-              <% end %>
+            <div class="card-body custom-card-body">
+              <div class="user-info">
+                <%= image_tag "no_image.png", alt: "no_image", class: "user-icon" %>
+                <div class="text-info">
+                  <h3 class="card-title"><%= @user.name %></h3>
+                  <p class="card-text"><%= @user.profession %></p>
+                </div>
+                <div class="rating-info">
+                  <p class="card-text"><%= @user.rating %></p> <%# 後で実装予定 %>
+                </div>
+              </div>
             </div>
           </div>
+        <% end %>
+      </div>
+<% else %>
+  <%# ログインユーザーが一般ユーザーの場合 %>
+  <% @users.each do |user| %>
+    <%# コンサルタントのみ表示 %>
+    <% if user.is_consultant %>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body custom-card-body">
+            <%= link_to user_path(user) do %>
+              <div class="user-info">
+                <%= image_tag "no_image.png", alt: "no_image", class: "user-icon" %>
+                <div class="text-info">
+                  <h3 class="card-title"><%= user.name %></h3>
+                  <p class="card-text"><%= user.profession %></p>
+                </div>
+                <div class="rating-info">
+                  <p class="card-text"><%= user.rating %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   <% end %>
+<% end %>
+  </div>
 </div>
