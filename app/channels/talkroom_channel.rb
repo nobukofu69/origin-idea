@@ -1,7 +1,9 @@
 class TalkroomChannel < ApplicationCable::Channel
   def subscribed
-    # talkroom_channelからのストリーミングを開始する
-    stream_from 'talkroom_channel'
+    if current_user.consultants.exists?(params[:consultation_id]) \
+      || current_user.requesters.exists?(params[:consultation_id])
+      stream_from "talkroom_channel_#{params[:consultation_id]}"
+    end
   end
 
   def unsubscribed; end
@@ -9,11 +11,12 @@ class TalkroomChannel < ApplicationCable::Channel
   # クライアントがメッセージ送信に使うメソッド
   def speak(data)
     # クライアントからのデータをもとにmessageモデルを組み立てる
+    # 現在ログインしているユーザーのidを送信者idとして保存する
     message = current_user.senders.create!(sent_at: Time.current, consultation_id: data['consultation_id'],
                                            content: data['content'])
 
     # Messageモデルをレンダリングしてtalkroom_channelへブロードキャストする
-    ActionCable.server.broadcast 'talkroom_channel', { message: render_message(message) }
+    ActionCable.server.broadcast "talkroom_channel_#{params[:consultation_id]}", { message: render_message(message) }
   end
 
   private

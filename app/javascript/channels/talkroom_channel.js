@@ -1,4 +1,10 @@
-import consumer from "channels/consumer"
+import { createConsumer } from "@rails/actioncable"
+
+// グローバルにAppを定義
+window.App = {};
+
+// consumerを作成し、App.cableに代入
+App.cable = createConsumer();
 
 // 外部でappChatを定義
 let appChat;
@@ -15,7 +21,9 @@ addEventListener('turbo:load', () => {
     const consultationId = url.split('/')[4];
 
     // サブスクリプションを作成
-    appChat = consumer.subscriptions.create("TalkroomChannel", {
+    appChat = App.cable.subscriptions.create(
+      { channel: 'TalkroomChannel', consultation_id: consultationId },
+      {
       connected() {
       },
 
