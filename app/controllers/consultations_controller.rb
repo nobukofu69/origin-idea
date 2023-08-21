@@ -1,8 +1,11 @@
 class ConsultationsController < ApplicationController
-  # アイデア相談の詳細画面を表示する(相談を受けたユーザーのみ)
+  # アイデア相談の詳細画面を表示して既読にする(相談を受けたユーザーのみ)
   def show
     @consultation = Consultation.find(params[:id])
     @requester = User.find(@consultation.requester_id)
+    if @consultation.is_read == false
+      @consultation.update(is_read: true)
+    end
   end
 
   # アイデア相談の依頼画面を表示する
@@ -44,7 +47,7 @@ class ConsultationsController < ApplicationController
 
   # アイデア相談依頼の受付一覧を表示する
   def received_consultations
-    @consultations = Consultation.includes(:requester).where(consultant: current_user)
+    @consultations = Consultation.includes(:requester).where(consultant: current_user, request_status: :requesting)
   end
 
   private
