@@ -1,5 +1,4 @@
 class ConsultationsController < ApplicationController
-
   # 依頼の受付一覧を表示する(相談を受けたユーザーのみ)
   def index
     @consultations = Consultation.includes(:requester).where(consultant: current_user, request_status: :requesting)
