@@ -10,12 +10,24 @@ class Consultation < ApplicationRecord
   def self.consulted?(current_user, user)
     where(requester: current_user, consultant: user)
       .exists?(['request_status = ? OR talkroom_status = ?',
-        Consultation.request_statuses[:requesting],
-        Consultation.talkroom_statuses[:opened]])
+                Consultation.request_statuses[:requesting],
+                Consultation.talkroom_statuses[:opened]])
+  end
+
+  # 未読の依頼があればtrueを返すクラスメソッド
+  def self.unread_request?(current_user)
+    where(consultant: current_user, is_read: false).exists?
+  end
+
+  # インスタンスが未読であることを判定及び出力するメソッド
+  def unread_notification
+    is_read ? '' : '未読あり'
   end
 
   # ログインユーザー以外のユーザーを取得する
   def other_user(current_user)
     requester == current_user ? consultant : requester
   end
+
+
 end

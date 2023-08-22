@@ -123,52 +123,6 @@ h4 {
 }
 
 
-// レスポンシブ
-@media(max-width: 800px) {
-  html {
-    font-size: 87.5%;
-  }
-
-  .top-container {
-    flex-direction: column;
-    align-items: center;
-    margin: 0px auto;
-  }
-
-  .top-left-content {
-    margin-bottom: 50px;
-  }
-
-  .top-left-content h1 {
-    margin: 20px auto;
-    font-size: 40px;
-    font-family: 'Mochiy Pop One', sans-serif;
-    color: #172a33;
-  }
-
-  .top-left-content p {
-    margin: 20px auto;
-    font-size: 14px;
-    color: #7a8990;
-  }
-
-  .top-btn {
-    background-color: #7964b1;
-    font-size: 14px;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    margin: 0px;
-    border-radius: 5px;
-    text-decoration: none;
-  }
-
-  .top-logo {
-    height: 350px;
-  }
-}
-
-
 // ログインおよび登録画面
 
 .login-container,
@@ -234,28 +188,47 @@ h4 {
   color: #fff;
 }
 
-.mint-green-navbar {
-  background: #f1ecec
+// ホーム画面
+
+.home-container {
+
+  .custom-card-body {
+    display: block; /* d-flexの効果を上書き */
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .text-info {
+    margin-left: 20px;
+  }
+
+  .user-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .col-md-3 {
+    padding: 10px;
+  }
+
+  .row {
+    margin: 10px;
+  }
 }
 
-
-// Grid.scss
-
-.card-title {
-  font-size: 18px;
-}
-
-.card-text {
-  font-size: 14px;
-}
-
-.col-md-4 {
-  padding: 10px;
-}
-
-.row {
-  margin: 10px;
-}
 
 // フォーム
 
@@ -392,6 +365,73 @@ h4 {
   transition: 0.3s;
   border-radius: 5px;
 }
+
+// 依頼受付一覧画面
+
+.received-consultations {
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .consultation-list {
+    list-style: none;
+    padding: 0;
+
+    .consultation-item {
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      padding: 20px;
+      margin: 10px auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+
+      .user-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+        background-color: #fff;
+      }
+
+      .user-info {
+        flex-grow: 1;
+
+        h5 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        p {
+          margin: 5px 0 0;
+          font-size: 14px;
+          color: #666;
+        }
+      }
+
+      .unread-notification {
+        color: #e44d26;
+        font-size: 14px;
+        margin-right: 20px;
+      }
+
+      .details-link {
+        color: #007bff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
 
 // 依頼詳細画面
 
@@ -557,4 +597,59 @@ small {
   font-size: 0.8em;
 }
 
+// バッジ
+.unread-badge {
+  position: absolute;
+  top: 11px;
+  right:6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(208, 77, 77);
+  transform: translate(50%, -50%);
+}
 
+// レスポンシブ
+@media(max-width: 800px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  .top-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 0px auto;
+  }
+
+  .top-left-content {
+    margin-bottom: 50px;
+  }
+
+  .top-left-content h1 {
+    margin: 20px auto;
+    font-size: 40px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    color: #172a33;
+  }
+
+  .top-left-content p {
+    margin: 20px auto;
+    font-size: 14px;
+    color: #7a8990;
+  }
+
+  .top-btn {
+    background-color: #7964b1;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    margin: 0px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .top-logo {
+    height: 350px;
+  }
+}

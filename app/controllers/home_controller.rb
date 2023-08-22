@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
   def top
-    if user_signed_in?
-      redirect_to home_path
-    end
+    redirect_to home_path if user_signed_in?
   end
 
   def index

@@ -18,7 +18,7 @@
     <p class="alert"><%= alert %></p>
   <% end %>
     <%# ナビゲーションバーを隠さないページの場合 %>
-    <% if !hide_navbar? %>
+    <% if !hide_navbar? %> <%# hide_navbar?は application_helper.rb に定義 %>
       <header>
         <nav class="navbar navbar-expand-lg" >
           <div class="container-fluid">
@@ -31,8 +31,18 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
               <ul class="navbar-nav">
                 <% if user_signed_in? %>
-                  <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
-                  <li class="nav-item active"><%= link_to "依頼受付", received_consultations_user_consultations_path(current_user), class: "nav-link" %></li>
+                  <li class="nav-item active position-relative">
+                    <%= link_to "トーク", talkrooms_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item active position-relative">
+                    <%= link_to user_consultations_path(current_user), class: "nav-link" do %>
+                      依頼受付
+                      <% if @unread_request %>
+                        <%# 未読のコンサル依頼がある場合､バッジを表示 %>
+                        <span class='unread-badge'></span>
+                      <% end %>
+                    <% end %>
+                  </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <%= current_user.name %>さん
@@ -42,9 +52,7 @@
                       <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
                     </div>
                   </li>
-                <% else %>
-                  <li class="nav-item active"><%= link_to "トーク", talkrooms_path, class: "nav-link" %></li>
-                  <li class="nav-item active"><%= link_to "依頼受付", "#", class: "nav-link" %></li>
+                <% else %> <%# ログインしていない場合 %>
                   <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
                   <li class="nav-item"><%= link_to "会員登録", new_user_registration_path, class: "nav-link" %></li>
                 <% end %>
