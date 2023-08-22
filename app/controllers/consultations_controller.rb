@@ -1,4 +1,10 @@
 class ConsultationsController < ApplicationController
+
+  # 依頼の受付一覧を表示する(相談を受けたユーザーのみ)
+  def index
+    @consultations = Consultation.includes(:requester).where(consultant: current_user, request_status: :requesting)
+  end
+
   # アイデア相談の詳細画面を表示して既読にする(相談を受けたユーザーのみ)
   def show
     @consultation = Consultation.find(params[:id])
@@ -24,6 +30,8 @@ class ConsultationsController < ApplicationController
 
     if @consultation.save
       # 保存成功時の処理
+      ActionCable.server.broadcast "notifications_#{@user.id}",
+        { message: "#{current_user.name}さんからアイデア相談の依頼が届きました" }
       redirect_to root_path, notice: 'アイデア相談を依頼しました'
     else
       # 保存失敗時の処理
@@ -35,6 +43,8 @@ class ConsultationsController < ApplicationController
   def accept
     @consultation = Consultation.find(params[:id])
     @consultation.update(request_status: 'completed', talkroom_status: 'opened')
+    ActionCable.server.broadcast "notifications_#{@consultation.requester_id}",
+      { message: "#{current_user.name}さんがあなたの相談を受理しました"}
     redirect_to root_path, notice: '依頼を受けました'
   end
 
@@ -42,12 +52,9 @@ class ConsultationsController < ApplicationController
   def reject
     @consultation = Consultation.find(params[:id])
     @consultation.update(request_status: 'completed', talkroom_status: 'closed')
+    ActionCable.server.broadcast "notifications_#{@consultation.requester_id}",
+      { message: "#{current_user.name}さんがあなたの相談を断りました"}
     redirect_to root_path, notice: '依頼を断りました'
-  end
-
-  # アイデア相談依頼の受付一覧を表示する
-  def received_consultations
-    @consultations = Consultation.includes(:requester).where(consultant: current_user, request_status: :requesting)
   end
 
   private
