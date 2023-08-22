@@ -72,6 +72,13 @@ h4 {
   margin: 10px 0;
 }
 
+// 通知関連
+
+.unread-notification {
+  color: #e44d26;
+  font-size: 14px;
+  margin-right: 20px;
+}
 
 // トップ画面
 .top-container {
@@ -273,9 +280,9 @@ h4 {
   text-align: center;
   margin: 30px auto;
   width: 70%;
-  border: 1px solid #e0e0e0; /* 薄い線で囲う */
-  padding: 10px; /* 内部の余白を追加 */
-  box-sizing: border-box; /* paddingを含めたサイズにする */
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .content-box p {
@@ -291,13 +298,13 @@ h4 {
 .edit-title {
   font-size: 24px;
   margin-bottom: 20px;
-  text-align: center; /* タイトルを真ん中寄せに */
+  text-align: center;
 }
 
 .edit-form {
   width: 70%;
   margin: 0 auto;
-  text-align: center; /* ボタンを真ん中寄せに */
+  text-align: center;
 }
 
 .form-group {
@@ -316,7 +323,7 @@ h4 {
   color: #fff;
   border: none;
   cursor: pointer;
-  display: inline-block; /* ボタンをインライン要素に */
+  display: inline-block;
   transition: 0.3s;
 }
 
@@ -374,7 +381,9 @@ h4 {
   }
 
   h3 {
+    margin: 0;
     font-size: 18px;
+    font-weight: 600;
   }
 
   .consultation-list {
@@ -401,31 +410,10 @@ h4 {
       .user-info {
         flex-grow: 1;
 
-        h5 {
-          margin: 0;
-          font-size: 18px;
-          font-weight: 600;
-        }
-
         p {
           margin: 5px 0 0;
           font-size: 14px;
           color: #666;
-        }
-      }
-
-      .unread-notification {
-        color: #e44d26;
-        font-size: 14px;
-        margin-right: 20px;
-      }
-
-      .details-link {
-        color: #007bff;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
         }
       }
     }
@@ -488,6 +476,53 @@ h4 {
   border: 1px solid #e0e0e0;
   padding: 10px;
   box-sizing: border-box;
+}
+
+// トーク一覧
+
+.talkrooms  {
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .talkroom-list {
+    list-style: none;
+    padding: 0;
+
+    .talkroom-item {
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      padding: 20px;
+      margin: 10px auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+
+      .user-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+        background-color: #fff;
+      }
+
+      .user-info {
+        flex-grow: 1;
+
+        p {
+          margin: 5px 0 0;
+          font-size: 14px;
+          color: #666;
+        }
+      }
+    }
+  }
 }
 
 // トークルーム
