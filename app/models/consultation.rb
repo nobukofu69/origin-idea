@@ -29,7 +29,7 @@ class Consultation < ApplicationRecord
     messages.empty? ? 'トークをはじめよう！' : ''
   end
 
-  # トークルームに未読のメッセージがあることを判定および出力するメソッド
+  # トークルームに未読の受信メッセージがあることを判定および出力するメソッド
   def unread_message_notification(current_user)
     messages.where.not(sender: current_user).exists?(is_read: false) ? '未読メッセージがあります！' : ''
   end
