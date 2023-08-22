@@ -1,15 +1,35 @@
-import consumer from "./consumer"
+import { createConsumer } from "@rails/actioncable"
 
-consumer.subscriptions.create("NotificationsChannel", {
-  connected() {
-    // Called when the subscription is ready for use on the server
-  },
+// グローバルにAppを定義
+window.App = {};
 
-  disconnected() {
-    // Called when the subscription has been terminated by the server
-  },
+// consumerを作成し、App.cableに代入
+App.cable = createConsumer();
 
-  received(data) {
-    // Called when there's incoming data on the websocket for this channel
+addEventListener('turbo:load', () => {
+  App.notifications = App.cable.subscriptions.create("NotificationsChannel", {
+    connected() {
+      // Called when the subscription is ready for use on the server
+    },
+
+    disconnected() {
+      // Called when the subscription has been terminated by the server
+    },
+
+    received(data) {
+      alert(data['message']);
+    }
+  });
+});
+
+addEventListener('beforeunload', () => {
+  if (App.notifications) {
+    App.notifications.unsubscribe();
+  }
+});
+
+window.addEventListener('popstate', () => {
+  if (App.notifications) {
+    App.notifications.unsubscribe();
   }
 });
