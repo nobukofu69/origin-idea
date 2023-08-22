@@ -20,8 +20,18 @@ class Consultation < ApplicationRecord
   end
 
   # Consultationインスタンスのis＿readカラムが未読であることを判定及び出力するメソッド
-  def unread_notification
+  def unread_request_notification
     is_read ? '' : '未読あり'
+  end
+
+  # messageが存在しないことを判定および出力するメソッド
+  def no_message_notification
+    messages.empty? ? 'トークをはじめよう！' : ''
+  end
+
+  # トークルームに未読のメッセージがあることを判定および出力するメソッド
+  def unread_message_notification(current_user)
+    messages.where.not(sender: current_user).exists?(is_read: false) ? '未読メッセージがあります！' : ''
   end
 
   # ログインユーザー以外のユーザーを取得する
@@ -29,8 +39,4 @@ class Consultation < ApplicationRecord
     requester == current_user ? consultant : requester
   end
 
-  # messageが存在しないことを判定および出力するメソッド
-  def no_message
-    messages.empty? ? 'トークをはじめよう！' : ''
-  end
 end
