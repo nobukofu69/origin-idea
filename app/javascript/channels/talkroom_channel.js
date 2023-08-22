@@ -61,6 +61,14 @@ addEventListener('turbo:before-cache', () => {
   }
 });
 
+// ページの戻る・進むボタンを押したときにサブスクリプションを解除
+window.addEventListener('popstate', () => {
+  if (appChat) {
+    appChat.unsubscribe();
+  }
+});
+
+
 // メッセージのスクロールを一番下にする
 document.addEventListener('DOMContentLoaded', function() {
   var messagesDiv = document.getElementById('messages');
