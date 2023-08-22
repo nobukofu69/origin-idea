@@ -11,7 +11,11 @@
             <p><%= other_user.profession %></p>
           </div>
           <div class="no_message-notification">
-            <%= consultation.no_message %>
+            <%# トークルームに紐づくメッセージがない場合､"トークをはじめよう！"と表示する %>
+            <%= consultation.no_message_notification %>
+
+            <%# トークルームに紐づく未読メッセージがある場合､"未読メッセージがあります！"と表示する %>
+            <%= consultation.unread_message_notification(current_user) %>
           </div>
         </li>
       <% end %>
