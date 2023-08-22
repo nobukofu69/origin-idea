@@ -12,9 +12,8 @@ class TalkroomsController < ApplicationController
     # トークルームに紐づくメッセージをまとめて取得する(N+1問題を解消するためにincludesメソッドを使用)
     @messages = @consultation.messages.includes(:sender)
     # 受信したメッセージに未読があれば既読にする
-    if @messages.where.not(sender: current_user).exists?(is_read: false)
-      @messages.where.not(sender: current_user).update_all(is_read: true)
-    end
+    unread_messages = @messages.where.not(sender: current_user, is_read: false)
+    unread_messages.update_all(is_read: true) if unread_messages.exists?
   end
 
   def end_consultation

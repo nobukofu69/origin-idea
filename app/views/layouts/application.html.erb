@@ -32,7 +32,12 @@
               <ul class="navbar-nav">
                 <% if user_signed_in? %>
                   <li class="nav-item active position-relative">
-                    <%= link_to "トーク", talkrooms_path, class: "nav-link" %>
+                    <%= link_to talkrooms_path, class: "nav-link" do %>
+                      トーク
+                      <% if @unread_message %>
+                        <span class='unread-badge'></span> <%# 未読のメッセージがある場合､バッジを表示 %>
+                      <% end %>
+                    <% end %>
                   </li>
                   <li class="nav-item active position-relative">
                     <%= link_to user_consultations_path(current_user), class: "nav-link" do %>
