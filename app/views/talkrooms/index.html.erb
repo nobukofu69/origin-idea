@@ -1,13 +1,24 @@
-<h2>トーク一覧</h2>
-<% @consultations.each do |consultation| %>
-  <div class="col-md-4">
-    <%= link_to talkroom_talkrooms_path(consultation) do %>
-      <div class="card">
-        <div class="card-body">
-          <% other_user = consultation.other_user(current_user) %>
-          <h3 class="card-title"><%= other_user.name %></h3>
-        </div>
-      </div>
+<div class="talkrooms">
+  <h2>トーク一覧</h2>
+  <ul class="talkroom-list">
+    <% @consultations.each do |consultation| %>
+      <%= link_to talkroom_talkrooms_path(consultation) do %>
+        <li class="talkroom-item">
+          <%= image_tag "no_image.png", alt: "no_image", class: "user-icon" %>
+          <div class="user-info">
+            <% other_user = consultation.other_user(current_user) %>
+            <h3><%= other_user.name %></h3>
+            <p><%= other_user.profession %></p>
+          </div>
+          <div class="no_message-notification">
+            <%# トークルームに紐づくメッセージがない場合､"トークをはじめよう！"と表示する %>
+            <%= consultation.no_message_notification %>
+
+            <%# トークルームに紐づく未読メッセージがある場合､"未読メッセージがあります！"と表示する %>
+            <%= consultation.unread_message_notification(current_user) %>
+          </div>
+        </li>
+      <% end %>
     <% end %>
-  </div>
-<% end %>
+  </ul>
+</div>

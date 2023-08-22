@@ -2,17 +2,18 @@
   <h2>依頼受付一覧</h2>
   <ul class="consultation-list">
     <% @consultations.each do |consultation| %>
-      <li class="consultation-item">
-        <%= image_tag "no_image.png", alt: "no_image", class: "user-icon" %>
-        <div class="user-info">
-          <h5><%= consultation.requester.name %></h5>
-          <p><%= consultation.requester.profession %></p>
-        </div>
-        <div class="unread-notification">
-          <%= consultation.unread_notification %>
-        </div>
-        <%= link_to '詳細', user_consultation_path(consultation.consultant, consultation.id), class: "details-link" %>
-      </li>
+      <%= link_to user_consultation_path(consultation.consultant, consultation.id) do %>
+        <li class="consultation-item">
+          <%= image_tag "no_image.png", alt: "no_image", class: "user-icon" %>
+          <div class="user-info">
+            <h5><%= consultation.requester.name %></h5>
+            <p><%= consultation.requester.profession %></p>
+          </div>
+          <div class="unread-notification">
+            <%= consultation.unread_request_notification %>
+          </div>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

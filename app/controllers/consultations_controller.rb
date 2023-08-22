@@ -1,5 +1,4 @@
 class ConsultationsController < ApplicationController
-
   # 依頼の受付一覧を表示する(相談を受けたユーザーのみ)
   def index
     @consultations = Consultation.includes(:requester).where(consultant: current_user, request_status: :requesting)
@@ -9,9 +8,8 @@ class ConsultationsController < ApplicationController
   def show
     @consultation = Consultation.find(params[:id])
     @requester = User.find(@consultation.requester_id)
-    if @consultation.is_read == false
-      @consultation.update(is_read: true)
-    end
+    # 未読の相談があれば既読にする
+    @consultation.is_read ? '' : @consultation.update(is_read: true)
   end
 
   # アイデア相談の依頼画面を表示する
