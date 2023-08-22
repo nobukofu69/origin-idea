@@ -6,10 +6,15 @@ class TalkroomsController < ApplicationController
       .where.not(talkroom_status: :not_created)
   end
 
-  # トークルームに入る
+  # トークルームに入り､メッセージを既読にする
   def show
     @consultation = Consultation.find(params[:consultation_id])
+    # トークルームに紐づくメッセージをまとめて取得する(N+1問題を解消するためにincludesメソッドを使用)
     @messages = @consultation.messages.includes(:sender)
+    # 受信したメッセージに未読があれば既読にする
+    if @messages.where.not(sender: current_user).exists?(is_read: false)
+      @messages.where.not(sender: current_user).update_all(is_read: true)
+    end
   end
 
   def end_consultation
