@@ -51,7 +51,7 @@ class ConsultationsController < ApplicationController
   # アイデア相談の依頼を断る
   def reject
     @consultation = Consultation.find(params[:id])
-    @consultation.update(request_status: 'completed', talkroom_status: 'closed')
+    @consultation.update(request_status: 'completed')
     ActionCable.server.broadcast "notifications_#{@consultation.requester_id}",
       { message: "#{current_user.name}さんがあなたの相談を断りました"}
     redirect_to root_path, notice: '依頼を断りました'
