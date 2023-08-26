@@ -7,7 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # 必要なパッケージのインストール
 RUN apt-get update && \
     apt-get install -y build-essential libssl-dev libreadline-dev \
-    libpq-dev zlib1g-dev nodejs npm libmysqlclient-dev  \
+    libpq-dev zlib1g-dev nodejs npm libmysqlclient-dev ruby-dev \
     mysql-client curl git wget less && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -35,9 +35,8 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
 # bundlerをインストール
 RUN /root/.rbenv/shims/gem install bundler
 
-# rbenvとgemのパスを通す
+# rbenvのパスを通す
 ENV PATH /root/.rbenv/shims:/root/.rbenv/bin:$PATH
-ENV PATH /path/to/your/app/vendor/bundle/ruby/3.1.0/bin:$PATH
 
 # 作業ディレクトリの設定
 WORKDIR /myapp
