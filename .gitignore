@@ -9,8 +9,6 @@
 
 # Ignore Gemインストール先
 /vendor/bundle
-/vendor/.keep
-/vendor/javascript/.keep
 
 # Ignore all logfiles and tempfiles.
 /log/*
