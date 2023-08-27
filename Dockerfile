@@ -8,7 +8,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && \
     apt-get install -y build-essential libssl-dev libreadline-dev \
     libpq-dev zlib1g-dev nodejs npm libmysqlclient-dev ruby-dev \
-    mysql-client curl git wget less && \
+    mysql-client curl git wget less vim && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
