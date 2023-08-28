@@ -46,5 +46,4 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 
 # Bundlerの実行
-RUN bundle config set --local path 'vendor/bundle' && \
-    bundle install
+RUN bundle install
