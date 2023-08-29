@@ -21,9 +21,9 @@ addEventListener('turbo:load', () => {
     const consultationId = url.split('/')[4];
 
     // サブスクリプションを作成
-    appChat = App.cable.subscriptions.create(
-      { channel: 'TalkroomChannel', consultation_id: consultationId },
-      {
+    appChat = App.cable.subscriptions.create({
+      channel: 'TalkroomChannel', consultation_id: consultationId
+    }, {
       connected() {
       },
 
