@@ -49,10 +49,10 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST} '
+          export RAILS_MASTER_KEY='$RAILS_MASTER_KEY' &&
           cd origin-idea &&
           git reset --hard origin/main &&
           git pull origin main &&
-          export RAILS_MASTER_KEY=$RAILS_MASTER_KEY &&
           ~/.rbenv/shims/bundle install &&
           ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
           ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
