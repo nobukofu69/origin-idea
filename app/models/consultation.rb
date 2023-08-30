@@ -16,7 +16,7 @@ class Consultation < ApplicationRecord
 
   # 未読の依頼があればtrueを返すクラスメソッド
   def self.unread_request?(user)
-    where(consultant: user, is_read: false).exists?
+    exists?(consultant: user, is_read: false)
   end
 
   # 未読のメッセージがあればtrueを返すクラスメソッド
