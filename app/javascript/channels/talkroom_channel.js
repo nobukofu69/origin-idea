@@ -13,7 +13,7 @@ addEventListener('turbo:load', () => {
   // トークルームの要素を取得
   const talkRoom = document.getElementById('talk-room');
 
-  // トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ以下の処理を実行
+  // トークルームが存在し、かつトークルームのステータスがclosedでない場合のみ
   if (talkRoom && talkRoom.dataset.talkroomStatus == 'opened') {
 
     // URLからconsultation_idを取得
