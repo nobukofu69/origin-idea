@@ -1,0 +1,64 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.1.2
+
+    - name: Cache gems
+      uses: actions/cache@v3
+      with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
+
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+
+    - name: Run RuboCop
+      run: bundle exec rubocop
+
+  deploy:
+    needs: rubocop
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST} '
+          cd origin-idea &&
+          git reset --hard origin/main &&
+          git pull origin main &&
+          bundle install &&
+          export RAILS_MASTER_KEY=$RAILS_MASTER_KEY &&
+          RAILS_ENV=production bundle exec rails db:migrate &&
+          RAILS_ENV=production bundle exec rails assets:precompile &&
+          RAILS_ENV=production bundle exec rails s -d
+          '
