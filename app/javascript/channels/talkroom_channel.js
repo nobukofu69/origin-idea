@@ -54,20 +54,17 @@ addEventListener('turbo:load', () => {
   }
 });
 
-// ページがアンロードされる前にサブスクリプションを解除
 addEventListener('turbo:before-cache', () => {
   if (appChat) {
     appChat.unsubscribe();
   }
 });
 
-// ページの戻る・進むボタンを押したときにサブスクリプションを解除
-window.addEventListener('popstate', () => {
+addEventListener('turbo:before-fetch-request', () => {
   if (appChat) {
     appChat.unsubscribe();
   }
 });
-
 
 // メッセージのスクロールを一番下にする
 document.addEventListener('DOMContentLoaded', function() {
