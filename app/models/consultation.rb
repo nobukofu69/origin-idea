@@ -54,5 +54,4 @@ class Consultation < ApplicationRecord
   def other_user(current_user)
     requester == current_user ? consultant : requester
   end
-
 end
