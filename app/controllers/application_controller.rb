@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_unread_request_status, if: :user_signed_in?
   before_action :set_unread_message_status, if: :user_signed_in?
+
   private
 
   def configure_permitted_parameters
@@ -17,5 +18,4 @@ class ApplicationController < ActionController::Base
   def set_unread_message_status
     @unread_message = Consultation.unread_message?(current_user)
   end
-
 end
