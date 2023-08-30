@@ -44,10 +44,6 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
-        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
       run: |
@@ -56,9 +52,10 @@ jobs:
           cd origin-idea &&
           git reset --hard origin/main &&
           git pull origin main &&
-          bundle install &&
           export RAILS_MASTER_KEY=$RAILS_MASTER_KEY &&
-          RAILS_ENV=production bundle exec rails db:migrate &&
-          RAILS_ENV=production bundle exec rails assets:precompile &&
-          RAILS_ENV=production bundle exec rails s -d
+          ~/.rbenv/shims/bundle install &&
+          ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production &&
+          ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production &&
+          rm -f tmp/pids/server.pid &&
+          ~/.rbenv/shims/bundle exec rails s -e production -d
           '
