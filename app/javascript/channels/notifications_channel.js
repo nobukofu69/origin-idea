@@ -22,18 +22,6 @@ addEventListener('turbo:load', () => {
   });
 });
 
-// addEventListener('beforeunload', () => {
-//   if (App.notifications) {
-//     App.notifications.unsubscribe();
-//   }
-// });
-
-// window.addEventListener('popstate', () => {
-//   if (App.notifications) {
-//     App.notifications.unsubscribe();
-//   }
-// });
-
 addEventListener('turbo:before-cache', () => {
   if (App.notifications) {
     App.notifications.unsubscribe();
