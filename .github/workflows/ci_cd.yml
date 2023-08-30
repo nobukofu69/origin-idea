@@ -44,12 +44,20 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOST} '
-          export RAILS_MASTER_KEY='$RAILS_MASTER_KEY' &&
+          export RAILS_MASTER_KEY='$RAILS_MASTER_KEY' \
+          DATABASE_HOST='$DATABASE_HOST' \
+          DATABASE_NAME='$DATABASE_NAME' \
+          DATABASE_USERNAME='$DATABASE_USERNAME' \
+          DATABASE_PASSWORD='$DATABASE_PASSWORD' &&
           cd origin-idea &&
           git reset --hard origin/main &&
           git pull origin main &&
